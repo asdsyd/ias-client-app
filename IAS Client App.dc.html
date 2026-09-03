@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#07100A;}
+  body{font-family:'Archivo',system-ui,sans-serif;font-stretch:112%;-webkit-font-smoothing:antialiased;}
+  a{color:#45FFAC;text-decoration:none}
+  a:hover{color:#AEFFD6}
+  *{box-sizing:border-box}
+  ::-webkit-scrollbar{width:0;height:0}
+  input,textarea,button{font-family:inherit;font-stretch:inherit}
+  @keyframes iasFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes iasSheet{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  @keyframes iasPulse{0%{box-shadow:0 0 0 0 rgba(69,255,172,.45)}70%{box-shadow:0 0 0 14px rgba(69,255,172,0)}100%{box-shadow:0 0 0 0 rgba(69,255,172,0)}}
+  @keyframes iasSpin{to{transform:rotate(360deg)}}
+  @keyframes iasShimmer{0%{opacity:.35}50%{opacity:.7}100%{opacity:.35}}
+</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs><pattern id="onbStripe" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="9" stroke="rgba(213,255,234,.16)" stroke-width="2.5"></line></pattern></defs></svg>
+
+<div style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;gap:56px;padding:32px 40px 48px;background:radial-gradient(120% 90% at 50% 0%,#0B1A10 0%,#07100A 60%)">
+
+  <div style="display:flex;flex-direction:column;gap:26px;width:250px;flex:none;position:sticky;top:32px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:26px;height:26px;border-radius:7px;border:1px solid rgba(213,255,234,.35);display:flex;align-items:center;justify-content:center;position:relative">
+        <span style="font:600 9px 'Archivo';letter-spacing:.06em;color:#D5FFEA">IAS</span>
+        <span style="position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:99px;background:#45FFAC"></span>
+      </div>
+      <div style="font:500 10px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">Client app · Phase 1</div>
+    </div>
+    <div>
+      <div style="font:400 26px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.01em">{{ screenTitle }}</div>
+      <div style="margin-top:8px;font:400 12px/1.6 'Archivo';color:rgba(213,255,234,.55)">{{ screenNote }}</div>
+    </div>
+    <div style="height:1px;background:rgba(213,255,234,.12)"></div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.38);margin-bottom:3px">Jump to</div>
+      <sc-for list="{{ jumpList }}" as="j" hint-placeholder-count="6">
+        <button onClick="{{ j.go }}" style="text-align:left;border:0;background:transparent;padding:5px 0;cursor:pointer;display:flex;align-items:center;gap:9px" style-hover="opacity:1">
+          <span style="width:4px;height:4px;border-radius:99px;background:{{ j.dot }}"></span>
+          <span style="font:400 12px 'Archivo';color:{{ j.color }}">{{ j.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="height:1px;background:rgba(213,255,234,.12)"></div>
+    <div style="font:400 11px/1.65 'Archivo';color:rgba(213,255,234,.35)">Bulevar substituted with Space&nbsp;Grotesk and Acumin&nbsp;Pro&nbsp;Wide with Archivo&nbsp;(112% width) — swap in the licensed families for final build. Logo is a type-set placeholder.</div>
+  </div>
+
+  <div style="flex:none;width:{{ frameBoxW }};height:{{ frameBoxH }}">
+  <div style="display:flex;width:418px;height:890px;padding:8px;border-radius:56px;transform:{{ frameTransform }};transform-origin:top left;background:linear-gradient(160deg,#20301F,#0A140C 55%,#1A2A1A);box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(213,255,234,.08)">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" width="{{ deviceW }}" height="{{ deviceH }}" hint-size="402px,874px">
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;background:#001B02;font-family:'Archivo',sans-serif;font-stretch:112%">
+
+    <sc-if value="{{ isSplash }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;background:#001B02;animation:iasFade .5s ease">
+        <div style="width:64px;height:64px;border-radius:18px;border:1.5px solid rgba(213,255,234,.45);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:26px">
+          <span style="font:600 20px 'Archivo';letter-spacing:.04em;color:#D5FFEA">IAS</span>
+          <span style="position:absolute;right:-3px;top:-3px;width:10px;height:10px;border-radius:99px;background:#45FFAC"></span>
+        </div>
+        <div style="font:200 15px 'Archivo';letter-spacing:.44em;text-transform:uppercase;color:#D5FFEA;padding-left:.44em">Income</div>
+        <div style="font:700 15px 'Archivo';letter-spacing:.44em;text-transform:uppercase;color:#D5FFEA;padding-left:.44em;margin-top:3px">After Sport</div>
+        <div style="position:absolute;bottom:70px;font:400 10px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.3)">Establishing secure session</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;padding:120px 26px 44px;animation:iasFade .4s ease">
+        <div style="display:flex;flex-direction:column;align-items:flex-start">
+          <div style="width:40px;height:40px;border-radius:12px;border:1.2px solid rgba(213,255,234,.4);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:20px">
+            <span style="font:600 13px 'Archivo';letter-spacing:.04em;color:#D5FFEA">IAS</span>
+            <span style="position:absolute;right:-2px;top:-2px;width:7px;height:7px;border-radius:99px;background:#45FFAC"></span>
+          </div>
+          <div style="font:200 13px 'Archivo';letter-spacing:.4em;text-transform:uppercase;color:#D5FFEA">Income</div>
+          <div style="font:700 13px 'Archivo';letter-spacing:.4em;text-transform:uppercase;color:#D5FFEA;margin-top:2px">After Sport</div>
+        </div>
+        <div style="margin-top:44px;font:400 30px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.015em">Welcome back.</div>
+        <div style="margin-top:12px;font:400 13px/1.6 'Archivo';color:rgba(213,255,234,.6);max-width:280px">Your portfolio, in real time. Sign in the way you prefer.</div>
+
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:12px">
+          <button onClick="{{ goFaceId }}" style="height:52px;border-radius:14px;border:0;background:#fff;color:#000;font:600 14px 'Archivo';display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-active="transform:scale(.985)">
+            <svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor"><path d="M12.3 9.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.9-.8C3.3 4.5 1.8 5.5 1 7c-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.8 2.2 1.1 0 1.5-.7 2.9-.7s1.7.7 2.9.7c1.2 0 2-1.1 2.7-2.2.5-.8.8-1.6 1-2.4-.1 0-2.1-.8-2.1-3.8zM9.9 3c.6-.7 1-1.7.9-2.7-.9.1-2 .6-2.6 1.3-.6.6-1 1.6-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
+            Sign in with Apple
+          </button>
+          <div style="display:flex;align-items:center;gap:12px;margin:6px 0">
+            <div style="flex:1;height:1px;background:rgba(213,255,234,.14)"></div>
+            <span style="font:500 9px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.35)">or</span>
+            <div style="flex:1;height:1px;background:rgba(213,255,234,.14)"></div>
+          </div>
+          <div>
+            <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5);margin-bottom:9px">Email address</div>
+            <input value="{{ email }}" onChange="{{ setEmail }}" placeholder="you@example.com" style="width:100%;height:52px;border-radius:14px;background:#000;border:1px solid rgba(213,255,234,.16);color:#fff;padding:0 16px;font-size:15px;outline:none" style-focus="border-color:rgba(69,255,172,.6)" />
+          </div>
+          <button onClick="{{ goOtp }}" style="height:52px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 14px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">Send me a code</button>
+        </div>
+        <div style="flex:1"></div>
+        <div style="font:400 11px/1.6 'Archivo';color:rgba(213,255,234,.32);text-align:center">IAS never asks for card details in the app.<br>Need help? Message your portfolio manager.</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isOtp }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;padding:100px 26px 44px;animation:iasFade .4s ease">
+        <button onClick="{{ goLogin }}" style="align-self:flex-start;background:transparent;border:0;color:rgba(213,255,234,.6);font:400 13px 'Archivo';cursor:pointer;padding:0;margin-bottom:28px">← Back</button>
+        <div style="font:400 26px/1.2 'Space Grotesk';color:#fff;letter-spacing:-.01em">Enter your code</div>
+        <div style="margin-top:10px;font:400 13px/1.6 'Archivo';color:rgba(213,255,234,.6)">We sent a six-digit code to {{ emailShown }}.</div>
+        <div style="margin-top:34px;display:flex;gap:9px">
+          <sc-for list="{{ otpBoxes }}" as="b" hint-placeholder-count="6">
+            <div style="flex:1;height:58px;border-radius:12px;background:#000;border:1px solid {{ b.border }};display:flex;align-items:center;justify-content:center;font:400 22px 'Space Grotesk';color:#fff">{{ b.char }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-top:18px;font:400 12px 'Archivo';color:rgba(213,255,234,.4)">Resend in {{ resendIn }}s</div>
+        <div style="flex:1"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <sc-for list="{{ keypad }}" as="k" hint-placeholder-count="12">
+            <button onClick="{{ k.press }}" style="height:56px;border-radius:14px;background:#000;border:1px solid rgba(213,255,234,.1);color:#fff;font:400 21px 'Space Grotesk';cursor:pointer" style-active="background:rgba(69,255,172,.14)">{{ k.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isFaceId }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;position:relative;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:iasFade .35s ease">
+        <div style="position:absolute;inset:0;opacity:.25;pointer-events:none;background:radial-gradient(60% 40% at 50% 30%,#001B02,#000)"></div>
+        <div style="width:88px;height:88px;border-radius:22px;border:1.5px solid #45FFAC;position:relative;animation:iasPulse 2s ease-in-out infinite">
+          <span style="position:absolute;top:14px;left:24px;width:5px;height:14px;border-radius:99px;background:#45FFAC"></span>
+          <span style="position:absolute;top:14px;right:24px;width:5px;height:14px;border-radius:99px;background:#45FFAC"></span>
+          <span style="position:absolute;bottom:22px;left:26px;right:26px;height:5px;border-radius:99px;background:#45FFAC"></span>
+        </div>
+        <div style="margin-top:30px;font:400 19px 'Space Grotesk';color:#fff">Face ID</div>
+        <div style="margin-top:8px;font:400 13px 'Archivo';color:rgba(213,255,234,.55)">Unlock Income After Sport</div>
+        <button onClick="{{ goOnboard }}" style="margin-top:36px;height:46px;padding:0 26px;border-radius:99px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">Scan face</button>
+        <button onClick="{{ goHome }}" style="margin-top:14px;background:transparent;border:0;color:rgba(213,255,234,.45);font:400 12px 'Archivo';cursor:pointer">Use passcode instead</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isOnboard }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;padding:78px 26px 40px;animation:iasFade .4s ease">
+        <div style="display:flex;gap:6px">
+          <sc-for list="{{ onboardDots }}" as="d" hint-placeholder-count="3">
+            <div style="flex:1;height:2px;border-radius:99px;background:{{ d.bg }}"></div>
+          </sc-for>
+        </div>
+        <div style="margin-top:56px;height:190px;border-radius:20px;background:#000;border:1px solid rgba(213,255,234,.1);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center">
+          <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.5" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"></rect></svg>
+          <div style="position:relative;font:400 10px ui-monospace,monospace;letter-spacing:.1em;color:rgba(213,255,234,.5);text-transform:uppercase">{{ onboardArt }}</div>
+        </div>
+        <div style="margin-top:38px;font:200 12px 'Archivo';letter-spacing:.32em;text-transform:uppercase;color:rgba(213,255,234,.55)">{{ onboardKicker }}</div>
+        <div style="margin-top:10px;font:400 30px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.015em;max-width:300px">{{ onboardTitle }}</div>
+        <div style="margin-top:14px;font:400 14px/1.65 'Archivo';color:rgba(213,255,234,.62);max-width:300px;text-wrap:pretty">{{ onboardBody }}</div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <button onClick="{{ goHome }}" style="background:transparent;border:0;color:rgba(213,255,234,.45);font:400 13px 'Archivo';cursor:pointer;padding:0">Skip</button>
+          <div style="flex:1"></div>
+          <button onClick="{{ onboardNext }}" style="height:52px;padding:0 30px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 14px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">{{ onboardCta }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLock }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;position:relative;background:linear-gradient(170deg,#02240A 0%,#001B02 45%,#000 100%);display:flex;flex-direction:column;align-items:center;padding:66px 14px 30px">
+        <div style="font:300 15px 'Archivo';letter-spacing:.06em;color:rgba(255,255,255,.8)">Thursday 3 September</div>
+        <div style="font:300 74px/1 'Space Grotesk';color:#fff;letter-spacing:-.02em;margin-top:2px">9:41</div>
+        <div style="width:100%;display:flex;flex-direction:column;gap:10px;margin-top:52px">
+          <sc-for list="{{ lockNotifs }}" as="n" hint-placeholder-count="2">
+            <div onClick="{{ n.go }}" style="border-radius:20px;background:rgba(0,0,0,.55);backdrop-filter:blur(24px);border:1px solid rgba(213,255,234,.12);padding:13px 14px;cursor:pointer">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+                <div style="width:19px;height:19px;border-radius:5px;border:1px solid rgba(213,255,234,.5);display:flex;align-items:center;justify-content:center;position:relative;flex:none">
+                  <span style="font:600 6.5px 'Archivo';color:#D5FFEA">IAS</span>
+                  <span style="position:absolute;right:-1.5px;top:-1.5px;width:4px;height:4px;border-radius:99px;background:#45FFAC"></span>
+                </div>
+                <span style="font:600 11px 'Archivo';letter-spacing:.03em;color:rgba(255,255,255,.9);text-transform:uppercase">Income After Sport</span>
+                <span style="flex:1"></span>
+                <span style="font:400 11px 'Archivo';color:rgba(255,255,255,.5)">{{ n.when }}</span>
+              </div>
+              <div style="font:600 14px 'Archivo';color:#fff">{{ n.title }}</div>
+              <div style="margin-top:3px;font:400 13px/1.45 'Archivo';color:rgba(255,255,255,.72)">{{ n.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:1"></div>
+        <div style="font:400 11px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35)">Swipe up to open</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isHomeLight }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0;background:#FBFDFB">
+        <div style="flex:none;background:#001B02;padding:56px 20px 14px;display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:9px">
+            <div style="width:26px;height:26px;border-radius:7px;border:1px solid rgba(213,255,234,.4);display:flex;align-items:center;justify-content:center;position:relative">
+              <span style="font:600 9px 'Archivo';color:#D5FFEA">IAS</span>
+              <span style="position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:99px;background:#45FFAC"></span>
+            </div>
+            <span style="font:500 10px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Light reference</span>
+          </div>
+          <button onClick="{{ goProfile }}" style="background:transparent;border:0;color:rgba(213,255,234,.6);font:400 12px 'Archivo';cursor:pointer">Close</button>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding:0 20px 110px">
+        <div style="margin-top:30px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(0,27,2,.45)">Total portfolio value</div>
+        <div style="margin-top:10px;font:400 50px/1 'Space Grotesk';color:#001B02;letter-spacing:-.025em">{{ portfolioValue }}</div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+          <span style="padding:4px 9px;border-radius:99px;background:#001B02;color:#45FFAC;font:600 11px 'Archivo'">↑ {{ portfolioDelta }}</span>
+          <span style="font:400 12px 'Archivo';color:rgba(0,27,2,.55)">since purchase</span>
+        </div>
+        <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+            <div style="border-radius:16px;background:#fff;border:1px solid rgba(0,27,2,.1);padding:14px">
+              <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(0,27,2,.45)">{{ m.label }}</div>
+              <div style="margin-top:9px;font:400 22px 'Space Grotesk';color:#001B02">{{ m.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:24px;border-radius:18px;background:#001B02;padding:16px">
+          <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.55)">Ancoats Works, Manchester</div>
+          <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between">
+            <span style="font:400 24px 'Space Grotesk';color:#fff">£231,500</span>
+            <span style="font:600 13px 'Archivo';color:#45FFAC">+£385.56 / mo</span>
+          </div>
+        </div>
+        <div style="margin-top:18px;font:400 11px/1.6 'Archivo';color:rgba(0,27,2,.42)">Light surfaces are for documents and shared views. Mints stay reserved for signal, never decoration.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showApp }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+
+        <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;overflow:hidden;padding:62px 20px 0">
+            <div style="height:11px;width:120px;border-radius:99px;background:rgba(213,255,234,.12);animation:iasShimmer 1.4s ease-in-out infinite"></div>
+            <div style="margin-top:22px;height:52px;width:78%;border-radius:12px;background:rgba(213,255,234,.1);animation:iasShimmer 1.4s ease-in-out .1s infinite"></div>
+            <div style="margin-top:14px;height:14px;width:46%;border-radius:99px;background:rgba(213,255,234,.08);animation:iasShimmer 1.4s ease-in-out .2s infinite"></div>
+            <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <sc-for list="{{ skeleton }}" as="s" hint-placeholder-count="4">
+                <div style="height:84px;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.07);animation:iasShimmer 1.4s ease-in-out infinite"></div>
+              </sc-for>
+            </div>
+            <div style="margin-top:16px;height:112px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.07);animation:iasShimmer 1.4s ease-in-out .3s infinite"></div>
+            <div style="margin-top:12px;height:112px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.07);animation:iasShimmer 1.4s ease-in-out .4s infinite"></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;text-align:center">
+            <div style="width:52px;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.3);display:flex;align-items:center;justify-content:center;font:400 22px 'Space Grotesk';color:#D5FFEA">!</div>
+            <div style="margin-top:22px;font:400 21px 'Space Grotesk';color:#fff">We can't reach your figures</div>
+            <div style="margin-top:10px;font:400 13px/1.65 'Archivo';color:rgba(213,255,234,.55)">Your data is safe. This is a connection problem on our side, and nothing in your portfolio has changed.</div>
+            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 26px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 13px 'Archivo';cursor:pointer">Try again</button>
+            <div style="margin-top:14px;font:400 11px 'Archivo';color:rgba(213,255,234,.3)">Last updated 3 Sep, 09:12</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;text-align:center">
+            <div style="width:74px;height:74px;border-radius:18px;border:1px dashed rgba(213,255,234,.28)"></div>
+            <div style="margin-top:24px;font:400 21px/1.3 'Space Grotesk';color:#fff">{{ emptyTitle }}</div>
+            <div style="margin-top:10px;font:400 13px/1.65 'Archivo';color:rgba(213,255,234,.55)">{{ emptyBody }}</div>
+            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 24px;border-radius:14px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">{{ emptyCta }}</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isReady }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;overflow-y:auto;min-height:0">
+
+            <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+              <div style="padding:56px 0 112px;animation:iasFade .35s ease">
+                <div style="padding:0 20px;display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">Good morning</div>
+                    <div style="font:600 16px 'Archivo';color:#fff;margin-top:2px">{{ memberName }}</div>
+                  </div>
+                  <button onClick="{{ goNotifications }}" style="width:38px;height:38px;border-radius:99px;background:#000;border:1px solid rgba(213,255,234,.12);position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center">
+                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none"><path d="M7.5 1.2c-2.4 0-4 1.8-4 4.1 0 3.2-1.1 4-1.1 4.8 0 .5.4.8 1 .8h8.2c.6 0 1-.3 1-.8 0-.8-1.1-1.6-1.1-4.8 0-2.3-1.6-4.1-4-4.1z" stroke="#D5FFEA" stroke-width="1.1" stroke-linejoin="round"/><path d="M6 13.3a1.6 1.6 0 0 0 3 0" stroke="#D5FFEA" stroke-width="1.1" stroke-linecap="round"/></svg>
+                    <span style="position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:99px;background:#45FFAC;border:2px solid #000"></span>
+                  </button>
+                </div>
+
+                <sc-if value="{{ showCelebration }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin:18px 20px 0;border-radius:16px;background:rgba(69,255,172,.1);border:1px solid rgba(69,255,172,.32);padding:13px 14px;display:flex;align-items:center;gap:12px">
+                    <div style="width:8px;height:8px;border-radius:99px;background:#45FFAC;flex:none;animation:iasPulse 2.4s ease-in-out infinite"></div>
+                    <div style="flex:1">
+                      <div style="font:600 12.5px 'Archivo';color:#45FFAC">September rent has cleared</div>
+                      <div style="margin-top:2px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.7)">£2,400.00 received from both tenants, on time.</div>
+                    </div>
+                    <button onClick="{{ dismissCelebration }}" style="background:transparent;border:0;color:rgba(213,255,234,.45);font-size:16px;cursor:pointer;padding:0 2px">×</button>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ layoutA }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding:0 20px">
+                    <div style="margin-top:32px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
+                    <button onClick="{{ openValueFigure }}" style="margin-top:10px;background:transparent;border:0;padding:0;display:block;text-align:left;cursor:pointer">
+                      <div style="font:400 54px/1 'Space Grotesk';color:#fff;letter-spacing:-.03em">{{ portfolioValue }}</div>
+                    </button>
+                    <div style="margin-top:14px;display:flex;align-items:center;gap:9px">
+                      <span style="padding:4px 9px;border-radius:99px;background:rgba(69,255,172,.14);color:#45FFAC;font:600 11.5px 'Archivo'">↑ {{ portfolioDelta }}</span>
+                      <span style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ portfolioDeltaPct }} since purchase</span>
+                    </div>
+                    <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+                        <button onClick="{{ m.tap }}" style="text-align:left;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:14px;cursor:pointer" style-active="border-color:rgba(69,255,172,.45)">
+                          <div style="display:flex;align-items:center;justify-content:space-between">
+                            <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</span>
+                            <span style="font:400 11px 'Archivo';color:rgba(213,255,234,.3)">ⓘ</span>
+                          </div>
+                          <div style="margin-top:10px;font:400 23px 'Space Grotesk';color:{{ m.color }}">{{ m.value }}</div>
+                          <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.4)">{{ m.sub }}</div>
+                        </button>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ layoutB }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:0 20px">
+                    <div style="margin-top:30px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
+                      <div>
+                        <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Portfolio value</div>
+                        <button onClick="{{ openValueFigure }}" style="margin-top:8px;background:transparent;border:0;padding:0;text-align:left;cursor:pointer;display:block">
+                          <div style="font:400 40px/1 'Space Grotesk';color:#fff;letter-spacing:-.025em">{{ portfolioValue }}</div>
+                        </button>
+                        <div style="margin-top:9px;font:600 11.5px 'Archivo';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
+                      </div>
+                      <svg width="96" height="52" viewBox="0 0 96 52" fill="none" style="flex:none"><path d="{{ sparkPath }}" stroke="#45FFAC" stroke-width="1.6" stroke-linecap="round"/></svg>
+                    </div>
+                    <div style="margin-top:26px;border-top:1px solid rgba(213,255,234,.12)">
+                      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+                        <button onClick="{{ m.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.09);padding:15px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
+                          <div>
+                            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</div>
+                            <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.35)">{{ m.sub }}</div>
+                          </div>
+                          <div style="display:flex;align-items:center;gap:10px">
+                            <span style="font:400 21px 'Space Grotesk';color:{{ m.color }}">{{ m.value }}</span>
+                            <span style="color:rgba(213,255,234,.3);font-size:13px">›</span>
+                          </div>
+                        </button>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ layoutC }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:0 20px">
+                    <div style="margin-top:28px;border-radius:22px;background:#000;border:1px solid rgba(213,255,234,.1);padding:18px 18px 0;overflow:hidden">
+                      <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
+                      <button onClick="{{ openValueFigure }}" style="margin-top:8px;background:transparent;border:0;padding:0;text-align:left;display:block;cursor:pointer">
+                        <div style="font:400 42px/1 'Space Grotesk';color:#fff;letter-spacing:-.025em">{{ portfolioValue }}</div>
+                      </button>
+                      <div style="margin-top:8px;font:600 11.5px 'Archivo';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
+                      <svg width="100%" height="74" viewBox="0 0 340 74" preserveAspectRatio="none" fill="none" style="margin-top:8px;display:block"><path d="{{ heroAreaPath }}" fill="rgba(69,255,172,.14)"/><path d="{{ heroLinePath }}" stroke="#45FFAC" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div style="margin-top:10px;display:grid;grid-template-columns:1.35fr 1fr;gap:10px">
+                      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+                        <button onClick="{{ m.tap }}" style="text-align:left;border-radius:16px;background:{{ m.tileBg }};border:1px solid {{ m.tileBorder }};padding:14px;cursor:pointer;grid-column:{{ m.span }}">
+                          <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:{{ m.tileLabel }}">{{ m.label }}</div>
+                          <div style="margin-top:10px;font:400 24px 'Space Grotesk';color:{{ m.tileValue }}">{{ m.value }}</div>
+                          <div style="margin-top:4px;font:400 10.5px 'Archivo';color:{{ m.tileSub }}">{{ m.sub }}</div>
+                        </button>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ showMilestone }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin:22px 20px 0;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                      <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Next milestone</span>
+                      <span style="font:600 11px 'Archivo';color:#45FFAC">{{ milestonePctLabel }}</span>
+                    </div>
+                    <div style="margin-top:11px;display:flex;align-items:baseline;gap:8px">
+                      <span style="font:400 19px 'Space Grotesk';color:#fff">£200,000 equity</span>
+                      <span style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ milestoneRemaining }} to go</span>
+                    </div>
+                    <div style="margin-top:13px;height:6px;border-radius:99px;background:rgba(213,255,234,.12);overflow:hidden">
+                      <div style="height:100%;border-radius:99px;background:#45FFAC;width:{{ milestoneWidth }}"></div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="margin:28px 20px 0;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Your properties</span>
+                  <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.4)">{{ propertyCount }}</span>
+                </div>
+
+                <sc-if value="{{ layoutC }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:14px;padding:0 20px 4px;display:flex;gap:12px;overflow-x:auto">
+                    <sc-for list="{{ properties }}" as="p" hint-placeholder-count="3">
+                      <button onClick="{{ p.open }}" style="flex:none;width:216px;text-align:left;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:0;overflow:hidden;cursor:pointer">
+                        <div style="height:104px;position:relative;background:#03210B">
+                          <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.55" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"/></svg>
+                          <div style="position:absolute;left:11px;bottom:9px;font:400 8.5px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(213,255,234,.5)">property shot</div>
+                          <div style="position:absolute;right:9px;top:9px;padding:3px 8px;border-radius:99px;background:{{ p.tagBg }};font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.tagColor }}">{{ p.status }}</div>
+                        </div>
+                        <div style="padding:13px 14px 15px">
+                          <div style="font:600 12.5px/1.35 'Archivo';color:#fff">{{ p.name }}</div>
+                          <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.city }}</div>
+                          <div style="margin-top:12px;display:flex;align-items:baseline;justify-content:space-between">
+                            <span style="font:400 19px 'Space Grotesk';color:#fff">{{ p.value }}</span>
+                            <span style="font:600 11.5px 'Archivo';color:{{ p.netColor }}">{{ p.netLabel }}</span>
+                          </div>
+                        </div>
+                      </button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ notLayoutC }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:14px;padding:0 20px;display:flex;flex-direction:column;gap:10px">
+                    <sc-for list="{{ properties }}" as="p" hint-placeholder-count="3">
+                      <button onClick="{{ p.open }}" style="width:100%;text-align:left;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:14px;cursor:pointer;display:flex;gap:13px;align-items:center" style-active="border-color:rgba(69,255,172,.4)">
+                        <div style="width:54px;height:54px;border-radius:12px;background:#03210B;position:relative;overflow:hidden;flex:none">
+                          <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.6" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"/></svg>
+                        </div>
+                        <div style="flex:1;min-width:0">
+                          <div style="display:flex;align-items:center;gap:7px">
+                            <span style="font:600 12.5px 'Archivo';color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                          </div>
+                          <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.city }} · {{ p.status }}</div>
+                          <div style="margin-top:9px;display:flex;align-items:baseline;gap:9px">
+                            <span style="font:400 18px 'Space Grotesk';color:#fff">{{ p.value }}</span>
+                            <span style="font:600 11px 'Archivo';color:{{ p.netColor }}">{{ p.netLabel }}</span>
+                          </div>
+                        </div>
+                        <span style="color:rgba(213,255,234,.3);font-size:15px">›</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <div style="margin:26px 20px 0;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Figures updated 3 Sep, 09:41. Valuations from Hometrack, refreshed monthly. Tap any number to see how it is worked out.</div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isProperty }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 0 112px;animation:iasFade .3s ease">
+                <div style="position:relative;height:246px;background:#03210B">
+                  <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.55" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"/></svg>
+                  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,27,2,.75) 0%,rgba(0,27,2,0) 40%,rgba(0,27,2,.95) 100%)"></div>
+                  <button onClick="{{ goHome }}" style="position:absolute;top:56px;left:16px;width:36px;height:36px;border-radius:99px;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border:1px solid rgba(213,255,234,.16);color:#D5FFEA;font-size:15px;cursor:pointer">←</button>
+                  <div style="position:absolute;left:20px;top:60px;font:400 9px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.4);padding-left:44px">hero property shot</div>
+                  <div style="position:absolute;left:20px;right:20px;bottom:16px">
+                    <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ prop.tagBg }};font:600 8.5px 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:{{ prop.tagColor }}">{{ prop.status }}</div>
+                    <div style="margin-top:9px;font:400 25px/1.2 'Space Grotesk';color:#fff;letter-spacing:-.015em">{{ prop.name }}</div>
+                    <div style="margin-top:5px;font:400 12px 'Archivo';color:rgba(213,255,234,.6)">{{ prop.address }}</div>
+                  </div>
+                </div>
+
+                <div style="padding:20px 20px 0">
+                  <div style="border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                      <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Net return</span>
+                      <div style="display:flex;gap:4px">
+                        <sc-for list="{{ netPeriods }}" as="np" hint-placeholder-count="2">
+                          <button onClick="{{ np.set }}" style="padding:4px 10px;border-radius:99px;border:0;background:{{ np.bg }};color:{{ np.color }};font:600 10px 'Archivo';cursor:pointer">{{ np.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <button onClick="{{ openNetFigure }}" style="margin-top:12px;background:transparent;border:0;padding:0;text-align:left;display:block;cursor:pointer">
+                      <div style="font:400 38px/1 'Space Grotesk';color:#45FFAC;letter-spacing:-.02em">{{ prop.netShown }}</div>
+                    </button>
+                    <div style="margin-top:8px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.5)">{{ prop.netSub }} · tap to see the maths</div>
+                    <svg width="100%" height="76" viewBox="0 0 336 76" preserveAspectRatio="none" fill="none" style="margin-top:14px;display:block">
+                      <path d="{{ prop.chartArea }}" fill="rgba(69,255,172,.12)"/>
+                      <path d="{{ prop.chartLine }}" stroke="#45FFAC" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <div style="margin-top:7px;display:flex;justify-content:space-between;font:400 9px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
+                      <span>Oct 25</span><span>Rolling 12 months of net income</span><span>Sep 26</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                    <sc-for list="{{ prop.facts }}" as="f" hint-placeholder-count="4">
+                      <button onClick="{{ f.tap }}" style="text-align:left;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:13px;cursor:pointer">
+                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ f.label }}</div>
+                        <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#fff">{{ f.value }}</div>
+                      </button>
+                    </sc-for>
+                  </div>
+
+                  <sc-if value="{{ showMilestone }}" hint-placeholder-val="{{ true }}">
+                    <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
+                      <div style="display:flex;align-items:center;justify-content:space-between">
+                        <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ prop.progressLabel }}</span>
+                        <span style="font:600 11px 'Archivo';color:#45FFAC">{{ prop.progressPct }}</span>
+                      </div>
+                      <div style="margin-top:12px;height:6px;border-radius:99px;background:rgba(213,255,234,.12);overflow:hidden">
+                        <div style="height:100%;border-radius:99px;background:#45FFAC;width:{{ prop.progressWidth }}"></div>
+                      </div>
+                      <div style="margin-top:10px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.5)">{{ prop.progressNote }}</div>
+                    </div>
+                  </sc-if>
+
+                  <div style="margin-top:22px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Monthly expenses</div>
+                  <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);overflow:hidden">
+                    <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(213,255,234,.09)">
+                      <span style="font:600 12px 'Archivo';color:#fff">Rent received</span>
+                      <span style="font:700 14px 'Archivo';color:#45FFAC">{{ prop.rent }}</span>
+                    </div>
+                    <sc-for list="{{ prop.expenses }}" as="e" hint-placeholder-count="5">
+                      <button onClick="{{ e.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:13px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
+                        <div style="flex:1;min-width:0">
+                          <div style="font:500 12px 'Archivo';color:rgba(255,255,255,.92)">{{ e.k }}</div>
+                          <div style="margin-top:3px;font:400 10.5px/1.5 'Archivo';color:rgba(213,255,234,.42)">{{ e.note }}</div>
+                        </div>
+                        <span style="font:700 13px 'Archivo';color:rgba(255,255,255,.55);white-space:nowrap">−{{ e.v }}</span>
+                      </button>
+                    </sc-for>
+                    <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:rgba(69,255,172,.06)">
+                      <span style="font:600 12px 'Archivo';color:#fff">Net each month</span>
+                      <span style="font:700 15px 'Archivo';color:#45FFAC">{{ prop.net }}</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:12px;display:flex;gap:10px">
+                    <button onClick="{{ goPayments }}" style="flex:1;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 12.5px 'Archivo';cursor:pointer">Payment schedule</button>
+                    <button onClick="{{ goForecast }}" style="flex:1;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 12.5px 'Archivo';cursor:pointer">Project returns</button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isPayments }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:56px 0 112px;animation:iasFade .3s ease">
+                <div style="padding:0 20px">
+                  <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Payments</div>
+                  <div style="margin-top:8px;font:400 12.5px/1.6 'Archivo';color:rgba(213,255,234,.55)">Everything due in the next 60 days, and what each item is for.</div>
+                  <div style="margin-top:20px;display:flex;gap:10px">
+                    <div style="flex:1;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:13px">
+                      <div style="font:600 8.5px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(213,255,234,.5)">Cost of ownership</div>
+                      <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#fff">{{ ownTotal }}</div>
+                      <div style="margin-top:3px;font:400 10px 'Archivo';color:rgba(213,255,234,.38)">Paid from rent</div>
+                    </div>
+                    <div style="flex:1;border-radius:16px;background:rgba(69,255,172,.08);border:1px solid rgba(69,255,172,.28);padding:13px">
+                      <div style="font:600 8.5px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(69,255,172,.8)">Owed to IAS</div>
+                      <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#45FFAC">{{ iasTotal }}</div>
+                      <div style="margin-top:3px;font:400 10px 'Archivo';color:rgba(213,255,234,.45)">You send this</div>
+                    </div>
+                  </div>
+                </div>
+
+                <sc-if value="{{ timelineGrouped }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:26px;padding:0 20px">
+                    <sc-for list="{{ groupedPayments }}" as="g" hint-placeholder-count="2">
+                      <div style="margin-bottom:22px">
+                        <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42);margin-bottom:11px">{{ g.month }}</div>
+                        <div style="display:flex;flex-direction:column;gap:9px">
+                          <sc-for list="{{ g.items }}" as="p" hint-placeholder-count="3">
+                            <button onClick="{{ p.tap }}" style="width:100%;text-align:left;border-radius:16px;background:{{ p.bg }};border:1px solid {{ p.border }};padding:14px;cursor:pointer;display:flex;gap:13px;align-items:flex-start" style-active="transform:scale(.995)">
+                              <div style="width:42px;flex:none;text-align:center">
+                                <div style="font:400 19px/1 'Space Grotesk';color:{{ p.dateColor }}">{{ p.day }}</div>
+                                <div style="margin-top:2px;font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.4)">{{ p.dow }}</div>
+                              </div>
+                              <div style="flex:1;min-width:0">
+                                <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                                  <span style="font:600 12.5px 'Archivo';color:#fff">{{ p.title }}</span>
+                                  <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:600 8px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
+                                </div>
+                                <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.where }}</div>
+                                <div style="margin-top:7px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.58);text-wrap:pretty">{{ p.what }}</div>
+                              </div>
+                              <div style="text-align:right;flex:none">
+                                <div style="font:700 14px 'Archivo';color:{{ p.amountColor }}">{{ p.amount }}</div>
+                              </div>
+                            </button>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ timelineSplit }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:26px;padding:0 20px">
+                    <sc-for list="{{ railPayments }}" as="r" hint-placeholder-count="2">
+                      <div style="margin-bottom:20px;border-radius:18px;background:{{ r.bg }};border:1px solid {{ r.border }};overflow:hidden">
+                        <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(213,255,234,.09)">
+                          <div>
+                            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:{{ r.labelColor }}">{{ r.title }}</div>
+                            <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ r.sub }}</div>
+                          </div>
+                          <div style="font:400 20px 'Space Grotesk';color:{{ r.totalColor }}">{{ r.total }}</div>
+                        </div>
+                        <sc-for list="{{ r.items }}" as="p" hint-placeholder-count="3">
+                          <button onClick="{{ p.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:13px 16px;display:flex;gap:12px;align-items:center;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
+                            <div style="width:52px;flex:none;font:600 9.5px 'Archivo';letter-spacing:.06em;text-transform:uppercase;color:rgba(213,255,234,.45)">{{ p.shortDate }}</div>
+                            <div style="flex:1;min-width:0">
+                              <div style="font:600 12px 'Archivo';color:#fff">{{ p.title }}</div>
+                              <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.42)">{{ p.where }}</div>
+                            </div>
+                            <span style="font:700 13px 'Archivo';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
+                          </button>
+                        </sc-for>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ timelineStream }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:26px;padding:0 20px">
+                    <div style="position:relative;padding-left:26px">
+                      <div style="position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(213,255,234,.1),rgba(69,255,172,.5) 22%,rgba(213,255,234,.14))"></div>
+                      <sc-for list="{{ streamPayments }}" as="p" hint-placeholder-count="6">
+                        <div style="position:relative;padding-bottom:20px;opacity:{{ p.opacity }}">
+                          <div style="position:absolute;left:-25px;top:5px;width:11px;height:11px;border-radius:99px;background:{{ p.dotBg }};border:2px solid #001B02;box-shadow:{{ p.dotRing }}"></div>
+                          <sc-if value="{{ p.isToday }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;align-items:center;gap:9px;margin:2px 0 16px">
+                              <span style="font:600 9px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:#45FFAC">Today · 3 Sep</span>
+                              <span style="flex:1;height:1px;background:rgba(69,255,172,.28)"></span>
+                            </div>
+                          </sc-if>
+                          <sc-if value="{{ p.isItem }}" hint-placeholder-val="{{ true }}">
+                            <button onClick="{{ p.tap }}" style="width:100%;text-align:left;background:transparent;border:0;padding:0;cursor:pointer">
+                              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                                <span style="font:600 12.5px 'Archivo';color:#fff">{{ p.title }}</span>
+                                <span style="font:700 13.5px 'Archivo';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
+                              </div>
+                              <div style="margin-top:4px;display:flex;align-items:center;gap:7px">
+                                <span style="font:400 10.5px 'Archivo';color:rgba(213,255,234,.5)">{{ p.shortDate }} · {{ p.where }}</span>
+                                <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:600 8px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
+                              </div>
+                              <div style="margin-top:7px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.5);max-width:270px;text-wrap:pretty">{{ p.what }}</div>
+                            </button>
+                          </sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="margin:6px 20px 0">
+                  <button onClick="{{ openChangeSheet }}" style="width:100%;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer" style-active="background:rgba(69,255,172,.06)">Request a schedule change</button>
+                  <div style="margin-top:12px;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Mortgage and service charges are paid from your rent account automatically. Only items marked “Owed to IAS” need you to send funds.</div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isForecast }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:56px 0 112px;animation:iasFade .3s ease">
+                <div style="padding:0 20px">
+                  <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Projected returns</div>
+                  <div style="margin-top:8px;font:400 12.5px/1.6 'Archivo';color:rgba(213,255,234,.55)">A projection, not a promise. Based on 3% rent growth and 4% capital growth a year.</div>
+
+                  <div style="margin-top:20px;display:flex;gap:6px;padding:4px;border-radius:12px;background:#000;border:1px solid rgba(213,255,234,.1)">
+                    <sc-for list="{{ yearTabs }}" as="y" hint-placeholder-count="3">
+                      <button onClick="{{ y.set }}" style="flex:1;height:36px;border-radius:9px;border:0;background:{{ y.bg }};color:{{ y.color }};font:600 12px 'Archivo';cursor:pointer">{{ y.label }}</button>
+                    </sc-for>
+                  </div>
+
+                  <div style="margin-top:16px;border-radius:20px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px 16px 12px">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                      <div>
+                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ cursorYearLabel }}</div>
+                        <div style="margin-top:8px;font:400 32px/1 'Space Grotesk';color:#45FFAC;letter-spacing:-.02em">{{ cursorIncome }}</div>
+                        <div style="margin-top:5px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.5)">rental income that year</div>
+                      </div>
+                      <div style="text-align:right">
+                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(174,255,214,.6)">Outgoings</div>
+                        <div style="margin-top:8px;font:400 20px/1 'Space Grotesk';color:#AEFFD6">{{ cursorOut }}</div>
+                        <div style="margin-top:9px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.45)">Net</div>
+                        <div style="margin-top:5px;font:700 14px 'Archivo';color:#fff">{{ cursorNet }}</div>
+                      </div>
+                    </div>
+
+                    <div style="margin-top:14px;position:relative;touch-action:none;cursor:{{ chartCursor }}" onPointerDown="{{ chartDown }}" onPointerMove="{{ chartMove }}" onPointerUp="{{ chartUp }}">
+                      <svg width="100%" height="182" viewBox="0 0 336 182" preserveAspectRatio="none" fill="none" style="display:block;overflow:visible">
+                        <sc-for list="{{ gridLines }}" as="g" hint-placeholder-count="4">
+                          <line x1="0" y1="{{ g.y }}" x2="336" y2="{{ g.y }}" stroke="rgba(213,255,234,.07)" stroke-width="1"/>
+                        </sc-for>
+                        <sc-if value="{{ chartFillOn }}" hint-placeholder-val="{{ false }}">
+                          <path d="{{ incomeArea }}" fill="rgba(69,255,172,.13)"/>
+                        </sc-if>
+                        <path d="{{ outPath }}" stroke="#AEFFD6" stroke-width="1.6" stroke-dasharray="4 4" stroke-linecap="round" opacity=".85"/>
+                        <path d="{{ incomePath }}" stroke="#45FFAC" stroke-width="2.2" stroke-linecap="round"/>
+                        <line x1="{{ cursorX }}" y1="0" x2="{{ cursorX }}" y2="182" stroke="rgba(213,255,234,.4)" stroke-width="1"/>
+                        <circle cx="{{ cursorX }}" cy="{{ cursorOutY }}" r="3.5" fill="#AEFFD6"/>
+                        <circle cx="{{ cursorX }}" cy="{{ cursorIncomeY }}" r="5" fill="#45FFAC" stroke="#000" stroke-width="2"/>
+                        <sc-if value="{{ tapPointsOn }}" hint-placeholder-val="{{ false }}">
+                          <sc-for list="{{ tapDots }}" as="d" hint-placeholder-count="5">
+                            <circle cx="{{ d.x }}" cy="{{ d.y }}" r="3" fill="#001B02" stroke="#45FFAC" stroke-width="1.4"/>
+                          </sc-for>
+                        </sc-if>
+                      </svg>
+                      <div style="margin-top:9px;display:flex;justify-content:space-between;font:400 9px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
+                        <sc-for list="{{ xLabels }}" as="x" hint-placeholder-count="4">
+                          <span>{{ x.label }}</span>
+                        </sc-for>
+                      </div>
+                    </div>
+
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(213,255,234,.08);display:flex;align-items:center;gap:16px">
+                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#45FFAC;border-radius:9px"></span><span style="font:500 10.5px 'Archivo';color:rgba(213,255,234,.6)">Income</span></div>
+                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#AEFFD6;border-radius:9px;opacity:.85"></span><span style="font:500 10.5px 'Archivo';color:rgba(213,255,234,.6)">Outgoings</span></div>
+                      <span style="flex:1"></span>
+                      <span style="font:400 10px 'Archivo';color:rgba(213,255,234,.35)">{{ interactionHint }}</span>
+                    </div>
+                  </div>
+
+                  <sc-if value="{{ inspectorOn }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(69,255,172,.3);padding:16px">
+                      <div style="display:flex;align-items:center;justify-content:space-between">
+                        <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:#45FFAC">Inspector · {{ cursorYearLabel }}</span>
+                        <div style="display:flex;gap:7px">
+                          <button onClick="{{ cursorPrev }}" style="width:28px;height:28px;border-radius:8px;background:rgba(213,255,234,.08);border:0;color:#D5FFEA;cursor:pointer">‹</button>
+                          <button onClick="{{ cursorNext }}" style="width:28px;height:28px;border-radius:8px;background:rgba(213,255,234,.08);border:0;color:#D5FFEA;cursor:pointer">›</button>
+                        </div>
+                      </div>
+                      <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px">
+                        <sc-for list="{{ inspectorRows }}" as="r" hint-placeholder-count="4">
+                          <div style="display:flex;align-items:baseline;justify-content:space-between">
+                            <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.55)">{{ r.k }}</span>
+                            <span style="font:700 13px 'Archivo';color:{{ r.color }}">{{ r.v }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
+                    <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Projected equity</div>
+                    <div style="margin-top:10px;display:flex;align-items:baseline;gap:10px">
+                      <span style="font:400 28px 'Space Grotesk';color:#fff;letter-spacing:-.02em">{{ cursorEquity }}</span>
+                      <span style="font:600 12px 'Archivo';color:#45FFAC">↑ {{ equityGrowth }}</span>
+                    </div>
+                    <div style="margin-top:14px;display:flex;align-items:flex-end;gap:4px;height:56px">
+                      <sc-for list="{{ equityBars }}" as="b" hint-placeholder-count="10">
+                        <div style="flex:1;border-radius:3px 3px 0 0;background:{{ b.bg }};height:{{ b.h }}"></div>
+                      </sc-for>
+                    </div>
+                    <div style="margin-top:10px;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Value less mortgage debt, assuming interest-only borrowing is not repaid.</div>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isNotifications }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:56px 20px 112px;animation:iasFade .3s ease">
+                <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Notifications</div>
+                <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ inAppNotifs }}" as="n" hint-placeholder-count="4">
+                    <button onClick="{{ n.go }}" style="width:100%;text-align:left;border-radius:16px;background:{{ n.bg }};border:1px solid {{ n.border }};padding:14px;cursor:pointer;display:flex;gap:12px" style-active="transform:scale(.995)">
+                      <div style="width:8px;height:8px;border-radius:99px;background:{{ n.dot }};margin-top:5px;flex:none"></div>
+                      <div style="flex:1;min-width:0">
+                        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                          <span style="font:600 12.5px 'Archivo';color:#fff">{{ n.title }}</span>
+                          <span style="font:400 10px 'Archivo';color:rgba(213,255,234,.35);white-space:nowrap">{{ n.when }}</span>
+                        </div>
+                        <div style="margin-top:5px;font:400 11.5px/1.55 'Archivo';color:rgba(213,255,234,.58);text-wrap:pretty">{{ n.body }}</div>
+                      </div>
+                    </button>
+                  </sc-for>
+                </div>
+                <div style="margin-top:26px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Push previews</div>
+                <button onClick="{{ goLock }}" style="margin-top:12px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 12.5px 'Archivo';cursor:pointer">See the lock screen version</button>
+                <button onClick="{{ fireBanner }}" style="margin-top:10px;width:100%;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 12.5px 'Archivo';cursor:pointer">Trigger in-app banner</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:56px 20px 112px;animation:iasFade .3s ease">
+                <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Profile</div>
+                <div style="margin-top:20px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px;display:flex;align-items:center;gap:14px">
+                  <div style="width:52px;height:52px;border-radius:99px;background:#03210B;border:1px solid rgba(213,255,234,.14);display:flex;align-items:center;justify-content:center;font:400 17px 'Space Grotesk';color:#D5FFEA;flex:none">MO</div>
+                  <div>
+                    <div style="font:600 14px 'Archivo';color:#fff">{{ memberName }}</div>
+                    <div style="margin-top:3px;font:400 11px 'Archivo';color:rgba(213,255,234,.45)">Member since March 2024 · Ade Holdings Ltd</div>
+                  </div>
+                </div>
+                <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);overflow:hidden">
+                  <sc-for list="{{ profileRows }}" as="r" hint-placeholder-count="5">
+                    <button onClick="{{ r.go }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:15px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
+                      <span style="font:500 12.5px 'Archivo';color:rgba(255,255,255,.92)">{{ r.label }}</span>
+                      <span style="display:flex;align-items:center;gap:9px"><span style="font:400 11px 'Archivo';color:rgba(213,255,234,.4)">{{ r.value }}</span><span style="color:rgba(213,255,234,.28);font-size:14px">›</span></span>
+                    </button>
+                  </sc-for>
+                </div>
+
+                <div style="margin-top:26px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Prototype states</div>
+                <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ stateChips }}" as="c" hint-placeholder-count="9">
+                    <button onClick="{{ c.go }}" style="padding:9px 13px;border-radius:99px;border:1px solid rgba(213,255,234,.18);background:transparent;color:rgba(213,255,234,.75);font:500 11px 'Archivo';cursor:pointer" style-active="background:rgba(69,255,172,.1)">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+                <button onClick="{{ goSplash }}" style="margin-top:26px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.16);background:transparent;color:rgba(213,255,234,.6);font:600 12.5px 'Archivo';cursor:pointer">Sign out</button>
+              </div>
+            </sc-if>
+
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;left:0;right:0;bottom:0;height:82px;background:rgba(0,0,0,.86);backdrop-filter:blur(28px);border-top:1px solid rgba(213,255,234,.1);display:flex;align-items:flex-start;padding:11px 8px 0;z-index:30">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.go }}" style="flex:1;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ t.color }}">
+                <sc-if value="{{ t.isPortfolio }}" hint-placeholder-val="{{ true }}">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor"><rect x="1" y="1" width="7.5" height="7.5" rx="2"/><rect x="10.5" y="1" width="7.5" height="7.5" rx="2"/><rect x="1" y="10.5" width="7.5" height="7.5" rx="2"/><rect x="10.5" y="10.5" width="7.5" height="7.5" rx="2"/></svg>
+                </sc-if>
+                <sc-if value="{{ t.isPayments }}" hint-placeholder-val="{{ false }}">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor"><rect x="1" y="2.5" width="17" height="3" rx="1.5"/><rect x="1" y="8" width="12" height="3" rx="1.5"/><rect x="1" y="13.5" width="8" height="3" rx="1.5"/></svg>
+                </sc-if>
+                <sc-if value="{{ t.isForecast }}" hint-placeholder-val="{{ false }}">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M1.5 14.5 L6 9.5 L10 12 L17.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </sc-if>
+                <sc-if value="{{ t.isProfile }}" hint-placeholder-val="{{ false }}">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor"><circle cx="9.5" cy="5.5" r="4"/><path d="M1.5 18c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>
+                </sc-if>
+                <span style="font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase">{{ t.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ banner }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:12px;left:10px;right:10px;z-index:80;border-radius:20px;background:rgba(0,0,0,.82);backdrop-filter:blur(28px);border:1px solid rgba(69,255,172,.3);padding:13px 14px;animation:iasFade .3s ease">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+          <div style="width:19px;height:19px;border-radius:5px;border:1px solid rgba(213,255,234,.5);display:flex;align-items:center;justify-content:center;position:relative;flex:none">
+            <span style="font:600 6.5px 'Archivo';color:#D5FFEA">IAS</span>
+            <span style="position:absolute;right:-1.5px;top:-1.5px;width:4px;height:4px;border-radius:99px;background:#45FFAC"></span>
+          </div>
+          <span style="font:600 10.5px 'Archivo';letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85)">Income After Sport</span>
+          <span style="flex:1"></span>
+          <span style="font:400 10.5px 'Archivo';color:rgba(255,255,255,.45)">now</span>
+        </div>
+        <div style="font:600 13.5px 'Archivo';color:#fff">{{ bannerTitle }}</div>
+        <div style="margin-top:3px;font:400 12px/1.45 'Archivo';color:rgba(213,255,234,.72)">{{ bannerBody }}</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:16px;right:16px;bottom:98px;z-index:70;border-radius:14px;background:rgba(69,255,172,.13);border:1px solid rgba(69,255,172,.4);backdrop-filter:blur(20px);padding:13px 15px;display:flex;align-items:center;gap:11px;animation:iasFade .3s ease">
+        <div style="width:8px;height:8px;border-radius:99px;background:#45FFAC;flex:none;animation:iasPulse 2s ease-in-out infinite"></div>
+        <div style="font:600 12px/1.45 'Archivo';color:#45FFAC">{{ toast }}</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetFigure }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
+        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
+          <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
+          <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ figure.label }}</div>
+          <div style="margin-top:10px;font:400 36px/1 'Space Grotesk';color:{{ figure.color }};letter-spacing:-.02em">{{ figure.value }}</div>
+          <div style="margin-top:20px;border-top:1px solid rgba(213,255,234,.1)">
+            <sc-for list="{{ figure.rows }}" as="r" hint-placeholder-count="4">
+              <div style="padding:12px 0;border-bottom:1px solid rgba(213,255,234,.07);display:flex;align-items:baseline;justify-content:space-between;gap:14px">
+                <span style="font:400 12px/1.5 'Archivo';color:rgba(213,255,234,.6)">{{ r.k }}</span>
+                <span style="font:700 13px 'Archivo';color:{{ r.color }};white-space:nowrap">{{ r.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:16px;font:400 11px/1.65 'Archivo';color:rgba(213,255,234,.42);text-wrap:pretty">{{ figure.note }}</div>
+          <button onClick="{{ closeSheet }}" style="margin-top:22px;width:100%;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Close</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetPayment }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
+        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
+          <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
+          <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ payment.chipBg }};font:600 8.5px 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:{{ payment.chipColor }}">{{ payment.kind }}</div>
+          <div style="margin-top:12px;font:400 22px/1.25 'Space Grotesk';color:#fff">{{ payment.title }}</div>
+          <div style="margin-top:6px;font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ payment.where }} · {{ payment.fullDate }}</div>
+          <div style="margin-top:18px;font:400 34px/1 'Space Grotesk';color:{{ payment.amountColor }};letter-spacing:-.02em">{{ payment.amount }}</div>
+          <div style="margin-top:18px;padding:14px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.1)">
+            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">What this is</div>
+            <div style="margin-top:8px;font:400 12.5px/1.65 'Archivo';color:rgba(213,255,234,.75);text-wrap:pretty">{{ payment.what }}</div>
+          </div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{ payment.rows }}" as="r" hint-placeholder-count="3">
+              <div style="padding:11px 0;border-bottom:1px solid rgba(213,255,234,.07);display:flex;align-items:baseline;justify-content:space-between;gap:14px">
+                <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.55)">{{ r.k }}</span>
+                <span style="font:600 12px 'Archivo';color:rgba(255,255,255,.9);text-align:right">{{ r.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:10px">
+            <button onClick="{{ closeSheet }}" style="flex:1;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Close</button>
+            <button onClick="{{ openChangeSheet }}" style="flex:1.3;height:50px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 13px 'Archivo';cursor:pointer">Request a change</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetChange }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:95;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end">
+        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 38px;animation:iasSheet .32s cubic-bezier(.22,1,.36,1);max-height:88%;overflow-y:auto">
+          <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
+          <div style="font:400 22px/1.25 'Space Grotesk';color:#fff">Request a schedule change</div>
+          <div style="margin-top:8px;font:400 12px/1.6 'Archivo';color:rgba(213,255,234,.55)">Tell us the date that suits you better. Your portfolio manager will confirm within one working day, and nothing changes until they do.</div>
+
+          <div style="margin-top:22px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Payment</div>
+          <div style="margin-top:9px;padding:13px 14px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.1);display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font:600 12px 'Archivo';color:#fff">{{ changeTargetTitle }}</div>
+              <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ changeTargetSub }}</div>
+            </div>
+            <span style="font:700 13px 'Archivo';color:#fff">{{ changeTargetAmount }}</span>
+          </div>
+
+          <div style="margin-top:20px;display:flex;align-items:baseline;justify-content:space-between">
+            <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">New preferred date</span>
+            <span style="font:400 11px 'Archivo';color:rgba(213,255,234,.4)">October 2026</span>
+          </div>
+          <div style="margin-top:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:5px">
+            <sc-for list="{{ dowLabels }}" as="d" hint-placeholder-count="7">
+              <div style="text-align:center;font:600 8px 'Archivo';letter-spacing:.08em;text-transform:uppercase;color:rgba(213,255,234,.32);padding-bottom:3px">{{ d.label }}</div>
+            </sc-for>
+            <sc-for list="{{ calendarDays }}" as="c" hint-placeholder-count="35">
+              <button onClick="{{ c.pick }}" style="height:36px;border-radius:10px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:400 13px 'Space Grotesk';cursor:{{ c.cursor }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:20px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Anything we should know?</div>
+          <textarea value="{{ changeNote }}" onChange="{{ setChangeNote }}" placeholder="Optional — e.g. my club pays me on the 25th, so later in the month works better." style="margin-top:9px;width:100%;height:88px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.12);color:#fff;padding:13px 14px;font-size:13px;line-height:1.55;resize:none;outline:none" style-focus="border-color:rgba(69,255,172,.55)"></textarea>
+
+          <div style="margin-top:20px;display:flex;gap:10px">
+            <button onClick="{{ closeSheet }}" style="flex:1;height:52px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Cancel</button>
+            <button onClick="{{ submitChange }}" style="flex:1.4;height:52px;border-radius:14px;border:0;background:{{ submitBg }};color:{{ submitColor }};font:600 13px 'Archivo';cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+  </x-import>
+  </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 760, &quot;height&quot;: 980 },
+  &quot;homeLayout&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Hero stack&quot;, &quot;Split ledger&quot;, &quot;Bento&quot;], &quot;default&quot;: &quot;Hero stack&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Home layout&quot; },
+  &quot;timelineStyle&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Grouped by month&quot;, &quot;Split rails&quot;, &quot;Single stream&quot;], &quot;default&quot;: &quot;Grouped by month&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Payment timeline&quot; },
+  &quot;forecastInteraction&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Drag scrubber&quot;, &quot;Tap points&quot;, &quot;Pinned inspector&quot;], &quot;default&quot;: &quot;Drag scrubber&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Forecast&quot; },
+  &quot;chartFill&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Forecast&quot; },
+  &quot;showMilestones&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Gamification&quot; },
+  &quot;celebrateMoments&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Gamification&quot; }
+}">
+const G = n => '£' + Math.round(n).toLocaleString('en-GB');
+const G2 = n => '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const MINT = '#45FFAC', AQUA = '#AEFFD6', DIM = 'rgba(255,255,255,.55)';
+
+const PROPERTIES = [
+  {
+    id: 'anc', name: 'Flat 12, Ancoats Works', city: 'Manchester', status: 'Let',
+    address: '2 Cotton Street, Manchester M4 5BF', tenant: 'Let until 14 Jun 2027',
+    value: 231500, purchase: 212000, mortgage: 155000, rent: 1350, rate: '5.29% fixed to Mar 2028',
+    expenses: [
+      { k: 'Mortgage interest', v: 683.44, note: 'Interest-only with Precise Mortgages, 5.29% fixed to March 2028.' },
+      { k: 'Service charge', v: 142.00, note: '£426 billed each quarter by the Ancoats Works management company.' },
+      { k: 'IAS management fee', v: 108.00, note: '8% of rent. Covers tenant find, inspections and rent collection.' },
+      { k: 'Ground rent', v: 17.00, note: '£204 a year, paid every October.' },
+      { k: 'Landlord insurance', v: 14.00, note: 'Buildings and liability cover, spread monthly.' },
+    ],
+    series: [312, 340, 386, 386, 386, 244, 386, 386, 386, 386, 386, 386],
+  },
+  {
+    id: 'kir', name: '8 Kirkgate Chambers', city: 'Leeds', status: 'Let',
+    address: 'Kirkgate, Leeds LS1 6BY', tenant: 'Let until 2 Feb 2027',
+    value: 179000, purchase: 168000, mortgage: 121500, rent: 1050, rate: '5.14% fixed to Sep 2027',
+    expenses: [
+      { k: 'Mortgage interest', v: 520.19, note: 'Interest-only with Paragon, 5.14% fixed to September 2027.' },
+      { k: 'Service charge', v: 96.00, note: '£288 billed each quarter for the communal areas and lift.' },
+      { k: 'IAS management fee', v: 84.00, note: '8% of rent. Covers tenant find, inspections and rent collection.' },
+      { k: 'Ground rent', v: 17.00, note: '£204 a year, paid every October.' },
+      { k: 'Landlord insurance', v: 12.00, note: 'Buildings and liability cover, spread monthly.' },
+    ],
+    series: [268, 268, 290, 321, 321, 321, 321, 208, 321, 321, 321, 321],
+  },
+  {
+    id: 'snw', name: 'Apartment 304, Snow Hill Wharf', city: 'Birmingham', status: 'Off-plan',
+    address: 'Shadwell Street, Birmingham B4 6LZ', tenant: 'Completes March 2027',
+    value: 245000, purchase: 245000, mortgage: 0, rent: 0, rate: 'Mortgage offer held, drawn at completion',
+    expenses: [
+      { k: 'Stage payments made', v: 49000, note: 'Two of four instalments: exchange (Feb 2026) and stage two (Jun 2026).' },
+    ],
+    series: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+];
+
+const PAYMENTS = [
+  { id: 'p1', day: '8', dow: 'Mon', month: 'September 2026', shortDate: '8 Sep', fullDate: 'Monday 8 September 2026', title: 'Mortgage payment', where: 'Ancoats Works, Manchester', amount: 683.44, kind: 'Ownership',
+    what: 'Your interest-only payment to Precise Mortgages. It comes straight out of the rent account, so you do not need to send anything.',
+    rows: [['Lender', 'Precise Mortgages'], ['Rate', '5.29% fixed to Mar 2028'], ['Paid from', 'Rent account · Ade Holdings Ltd'], ['Reference', 'PM-4471928']] },
+  { id: 'p2', day: '10', dow: 'Thu', month: 'September 2026', shortDate: '10 Sep', fullDate: 'Thursday 10 September 2026', title: 'Mortgage payment', where: 'Kirkgate Chambers, Leeds', amount: 520.19, kind: 'Ownership',
+    what: 'Your interest-only payment to Paragon. Also taken from the rent account automatically.',
+    rows: [['Lender', 'Paragon Bank'], ['Rate', '5.14% fixed to Sep 2027'], ['Paid from', 'Rent account · Ade Holdings Ltd'], ['Reference', 'PB-77340012']] },
+  { id: 'p3', day: '26', dow: 'Fri', month: 'September 2026', shortDate: '26 Sep', fullDate: 'Friday 26 September 2026', title: 'Service charge, Q4', where: 'Ancoats Works, Manchester', amount: 426.00, kind: 'Ownership',
+    what: 'This covers cleaning, the lifts, communal power and building insurance for October to December. It is billed by the building, not by us.',
+    rows: [['Billed by', 'Ancoats Works RTM Ltd'], ['Period', 'Oct – Dec 2026'], ['Paid from', 'Rent account · Ade Holdings Ltd'], ['Last year', '£1,644 in total']] },
+  { id: 'p4', day: '1', dow: 'Thu', month: 'October 2026', shortDate: '1 Oct', fullDate: 'Thursday 1 October 2026', title: 'Stage payment 3 of 4', where: 'Snow Hill Wharf, Birmingham', amount: 24500.00, kind: 'Owed to IAS',
+    what: 'The third instalment on your Birmingham apartment, at 10% of the purchase price. We will email the invoice fourteen days beforehand, and you can move the date if it lands awkwardly.',
+    rows: [['Instalment', '3 of 4 · 10% of £245,000'], ['Paid to date', '£49,000 (20%)'], ['On completion', '£171,500 drawn on mortgage'], ['Expected completion', 'March 2027']] },
+  { id: 'p5', day: '9', dow: 'Fri', month: 'October 2026', shortDate: '9 Oct', fullDate: 'Friday 9 October 2026', title: 'Mortgage payment', where: 'Ancoats Works, Manchester', amount: 683.44, kind: 'Ownership',
+    what: 'The October instalment. Same amount every month until the fixed rate ends in March 2028.',
+    rows: [['Lender', 'Precise Mortgages'], ['Rate', '5.29% fixed to Mar 2028'], ['Paid from', 'Rent account · Ade Holdings Ltd'], ['Reference', 'PM-4471928']] },
+  { id: 'p6', day: '21', dow: 'Wed', month: 'October 2026', shortDate: '21 Oct', fullDate: 'Wednesday 21 October 2026', title: 'Ground rent', where: 'Kirkgate Chambers, Leeds', amount: 204.00, kind: 'Ownership',
+    what: 'An annual charge to the freeholder for the land the building sits on. It is fixed for the next ten years.',
+    rows: [['Paid to', 'Kirkgate Freehold Ltd'], ['Period', 'Oct 2026 – Sep 2027'], ['Review', 'Fixed until 2036'], ['Paid from', 'Rent account · Ade Holdings Ltd']] },
+  { id: 'p7', day: '2', dow: 'Mon', month: 'November 2026', shortDate: '2 Nov', fullDate: 'Monday 2 November 2026', title: 'IAS management fee, Q4', where: 'Portfolio · two properties', amount: 504.00, kind: 'Owed to IAS',
+    what: 'Our fee for looking after both let properties: tenant management, inspections, rent collection and your quarterly report.',
+    rows: [['Rate', '8% of rent collected'], ['Period', 'Oct – Dec 2026'], ['Properties', 'Ancoats Works, Kirkgate Chambers'], ['Invoice', 'IAS-2026-Q4-0118']] },
+];
+
+const CLEARED = [
+  { id: 'c1', day: '1', dow: 'Tue', month: 'September 2026', shortDate: '1 Sep', fullDate: 'Tuesday 1 September 2026', title: 'Rent received', where: 'Ancoats Works, Manchester', amount: 1350.00, kind: 'Cleared', credit: true,
+    what: 'Full rent received on time from your tenant.', rows: [['Method', 'Standing order'], ['Days late', 'None'], ['Since April', '12 of 12 paid on time']] },
+  { id: 'c2', day: '1', dow: 'Tue', month: 'September 2026', shortDate: '1 Sep', fullDate: 'Tuesday 1 September 2026', title: 'Rent received', where: 'Kirkgate Chambers, Leeds', amount: 1050.00, kind: 'Cleared', credit: true,
+    what: 'Full rent received on time from your tenant.', rows: [['Method', 'Standing order'], ['Days late', 'None'], ['Since April', '11 of 12 paid on time']] },
+  { id: 'c3', day: '8', dow: 'Sat', month: 'August 2026', shortDate: '8 Aug', fullDate: 'Saturday 8 August 2026', title: 'Mortgage payment', where: 'Ancoats Works, Manchester', amount: 683.44, kind: 'Cleared',
+    what: 'August instalment cleared from the rent account.', rows: [['Lender', 'Precise Mortgages'], ['Status', 'Cleared 8 Aug, 06:12']] },
+];
+
+const ONBOARD = [
+  { kicker: 'Everything, in one place', title: 'Your portfolio, exactly as it stands.', body: 'Values, rent, mortgage balances and net return, refreshed as they change. No spreadsheets, no waiting for a quarterly PDF.', art: 'portfolio overview illustration' },
+  { kicker: 'No more guessing', title: 'Every bill explained in plain English.', body: 'Service charges, ground rent, stage payments. You will see what each one is for, when it leaves, and whether it comes out of your rent or your pocket.', art: 'payment timeline illustration' },
+  { kicker: 'Look ahead', title: 'See where this gets you in twenty years.', body: 'Project income, outgoings and equity growth, and inspect any year. Assumptions are always shown, so you can judge them yourself.', art: 'forecast chart illustration' },
+];
+
+const CAL_START = 3; // 1 Oct 2026 is a Thursday (index 3 with Mon-first grid)
+
+class Component extends DCLogic {
+  state = {
+    screen: 'splash', prevTab: 'home', propertyId: 'anc', netPeriod: 'mo',
+    email: 'marcus.ade@icloud.com', otp: '', resendIn: 42, onboardStep: 0,
+    forceState: 'ready', sheet: null, figureKey: null, paymentId: null,
+    years: 10, cursor: 4, dragging: false, changeDate: null, changeNote: '',
+    toast: null, banner: null, celebrated: true, submitted: false, scale: 1,
+  };
+
+  componentDidMount() {
+    this._t = setTimeout(() => { if (this.state.screen === 'splash') this.setState({ screen: 'login' }); }, 1700);
+    this._fit = () => {
+      const s = Math.max(0.42, Math.min(1, (window.innerHeight - 72) / 890));
+      if (Math.abs(s - this.state.scale) > 0.005) this.setState({ scale: s });
+    };
+    this._fit();
+    window.addEventListener('resize', this._fit);
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t); clearTimeout(this._t2); clearTimeout(this._t3);
+    window.removeEventListener('resize', this._fit);
+  }
+
+  go = (screen, extra) => { this.setState({ screen, sheet: null, forceState: 'ready', ...(extra || {}) }); };
+  flash = (msg) => { this.setState({ toast: msg }); clearTimeout(this._t2); this._t2 = setTimeout(() => this.setState({ toast: null }), 2800); };
+
+  // ── forecast maths ────────────────────────────────────────────
+  forecast() {
+    const n = this.state.years, pts = [];
+    for (let y = 0; y <= n; y++) {
+      let income = 28800 * Math.pow(1.03, y);
+      let out = 20364 * Math.pow(1.025, y);
+      if (y >= 1) { income += 17700 * Math.pow(1.03, y - 1); out += 13980 * Math.pow(1.025, y - 1); }
+      const value = 655500 * Math.pow(1.04, y);
+      const equity = y === 0 ? 183000 : value - 448000;
+      pts.push({ y, income, out, equity, value });
+    }
+    return pts;
+  }
+
+  path(pts, key, max, w, h) {
+    const n = pts.length - 1;
+    return pts.map((p, i) => `${i ? 'L' : 'M'}${(i / n * w).toFixed(1)} ${(h - p[key] / max * (h - 14) - 7).toFixed(1)}`).join(' ');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const sc = s.screen;
+    const appScreens = ['home', 'property', 'payments', 'forecast', 'notifications', 'profile'];
+    const inApp = appScreens.includes(sc);
+    const st = s.forceState;
+
+    // ── portfolio maths ──
+    const totalValue = PROPERTIES.reduce((a, p) => a + p.value, 0);
+    const netMonthly = PROPERTIES.reduce((a, p) => a + (p.rent ? p.rent - p.expenses.reduce((b, e) => b + e.v, 0) : 0), 0);
+    const rentMonthly = PROPERTIES.reduce((a, p) => a + p.rent, 0);
+    const equity = 183000, growth = 30500, incomeToDate = 11842;
+    const milestonePct = equity / 200000;
+
+    const layout = this.props.homeLayout || 'Hero stack';
+    const tl = this.props.timelineStyle || 'Grouped by month';
+    const inter = this.props.forecastInteraction || 'Drag scrubber';
+    const gam = this.props.showMilestones !== false;
+
+    // ── figures (tap-to-reveal) ──
+    const FIGS = {
+      value: { label: 'Total portfolio value', value: G(totalValue), color: '#fff',
+        rows: [['Ancoats Works, Manchester', G(231500)], ['Kirkgate Chambers, Leeds', G(179000)], ['Snow Hill Wharf, Birmingham (at cost)', G(245000)], ['Total paid at purchase', G(625000)]],
+        note: 'Let properties are valued by Hometrack each month using comparable local sales. Snow Hill Wharf is off-plan, so it is held at purchase price until it completes and can be valued properly.' },
+      equity: { label: 'Equity owned', value: G(equity), color: '#fff',
+        rows: [['Value of let properties', G(410500)], ['Mortgage debt', '−' + G(276500)], ['Stage payments made on Snow Hill', '+' + G(49000)], ['Still to pay on Snow Hill', '−' + G(196000)]],
+        note: 'Equity is what would be yours if everything sold today at these valuations and the mortgages were repaid. Buying and selling costs are not included.' },
+      rent: { label: 'Monthly rental income', value: G2(rentMonthly), color: MINT,
+        rows: [['Ancoats Works', G2(1350)], ['Kirkgate Chambers', G2(1050)], ['Snow Hill Wharf', 'Not yet let']],
+        note: 'Rent as agreed in the current tenancies. Snow Hill Wharf starts contributing once it completes in March 2027.' },
+      net: { label: 'Net monthly return', value: G2(netMonthly), color: MINT,
+        rows: [['Rent received', G2(2400)], ['Mortgage interest', '−' + G2(1203.63)], ['Service charges', '−' + G2(238)], ['IAS management fees', '−' + G2(192)], ['Ground rent and insurance', '−' + G2(60)]],
+        note: 'What is left after every running cost, before tax. Your accountant will apply corporation tax at the company level.' },
+      yield: { label: 'Gross yield', value: '7.58%', color: '#fff',
+        rows: [['Annual rent on let stock', G(28800)], ['Purchase price of let stock', G(380000)], ['Net yield after costs', '2.22%'], ['Return on your equity', '5.29%']],
+        note: 'Gross yield is annual rent divided by purchase price. Net yield takes running costs off first, which is the number worth watching.' },
+      return: { label: 'Total net return to date', value: G(growth + incomeToDate), color: MINT,
+        rows: [['Capital growth', '+' + G(growth)], ['Net income received', '+' + G(incomeToDate)], ['Held since', 'March 2024']],
+        note: 'Capital growth is unrealised until you sell. Income is what has actually reached your company account.' },
+      propnet: null,
+    };
+
+    const metricDefs = [
+      { label: 'Equity owned', value: G(equity), sub: '27.9% of value', color: '#fff', key: 'equity', span: 'auto' },
+      { label: 'Monthly rent', value: G(rentMonthly), sub: 'Two tenancies', color: '#fff', key: 'rent', span: 'auto' },
+      { label: 'Net monthly', value: G2(netMonthly), sub: 'After all costs', color: MINT, key: 'net', span: 'auto' },
+      { label: 'Gross yield', value: '7.58%', sub: 'Net 2.22%', color: '#fff', key: 'yield', span: 'auto' },
+    ];
+    const tileStyles = [
+      { tileBg: '#000', tileBorder: 'rgba(213,255,234,.1)', tileLabel: 'rgba(213,255,234,.5)', tileValue: '#fff', tileSub: 'rgba(213,255,234,.4)', span: 'span 1' },
+      { tileBg: '#000', tileBorder: 'rgba(213,255,234,.1)', tileLabel: 'rgba(213,255,234,.5)', tileValue: '#fff', tileSub: 'rgba(213,255,234,.4)', span: 'span 1' },
+      { tileBg: 'rgba(69,255,172,.1)', tileBorder: 'rgba(69,255,172,.3)', tileLabel: 'rgba(69,255,172,.8)', tileValue: MINT, tileSub: 'rgba(213,255,234,.5)', span: 'span 1' },
+      { tileBg: '#000', tileBorder: 'rgba(213,255,234,.1)', tileLabel: 'rgba(213,255,234,.5)', tileValue: '#fff', tileSub: 'rgba(213,255,234,.4)', span: 'span 1' },
+    ];
+    const metrics = metricDefs.map((m, i) => ({
+      ...m, ...tileStyles[i],
+      tap: () => this.setState({ sheet: 'figure', figureKey: m.key }),
+    }));
+
+    // ── property detail ──
+    const p = PROPERTIES.find(x => x.id === s.propertyId) || PROPERTIES[0];
+    const pExp = p.expenses.reduce((a, e) => a + e.v, 0);
+    const pNet = p.rent ? p.rent - pExp : 0;
+    const smax = Math.max(...p.series, 1);
+    const spts = p.series.map((v, i) => ({ i, v }));
+    const chartLine = spts.map((q, i) => `${i ? 'L' : 'M'}${(q.i / 11 * 336).toFixed(1)} ${(70 - q.v / smax * 58).toFixed(1)}`).join(' ');
+    const isOffPlan = p.id === 'snw';
+
+    FIGS.propnet = {
+      label: p.name + ' · net return', value: s.netPeriod === 'mo' ? G2(pNet) : G2(pNet * 12), color: MINT,
+      rows: [['Rent received', G2(p.rent) + (s.netPeriod === 'mo' ? '' : ' / mo')], ...p.expenses.map(e => [e.k, '−' + G2(e.v)])],
+      note: 'Every figure comes from the actual bank movements on your rent account, reconciled monthly by our finance team.',
+    };
+
+    // ── payments ──
+    const decorate = (it) => {
+      const isIas = it.kind === 'Owed to IAS';
+      const cleared = it.kind === 'Cleared';
+      return {
+        ...it,
+        amount: (it.credit ? '+' : '') + G2(it.amount),
+        amountColor: it.credit ? MINT : (isIas ? MINT : DIM),
+        dateColor: isIas ? MINT : 'rgba(255,255,255,.9)',
+        bg: isIas ? 'rgba(69,255,172,.07)' : '#000',
+        border: isIas ? 'rgba(69,255,172,.26)' : 'rgba(213,255,234,.1)',
+        chipBg: isIas ? 'rgba(69,255,172,.18)' : 'rgba(213,255,234,.09)',
+        chipColor: isIas ? MINT : 'rgba(213,255,234,.6)',
+        opacity: cleared ? '.5' : '1',
+        dotBg: cleared ? 'rgba(213,255,234,.3)' : (isIas ? MINT : 'rgba(213,255,234,.55)'),
+        dotRing: isIas ? '0 0 0 4px rgba(69,255,172,.14)' : 'none',
+        isItem: true, isToday: false,
+        tap: () => this.setState({ sheet: 'payment', paymentId: it.id }),
+      };
+    };
+    const upcoming = PAYMENTS.map(decorate);
+    const months = [...new Set(PAYMENTS.map(x => x.month))];
+    const groupedPayments = months.map(m => ({ month: m, items: upcoming.filter(x => x.month === m) }));
+    const ownItems = upcoming.filter(x => x.kind === 'Ownership');
+    const iasItems = upcoming.filter(x => x.kind === 'Owed to IAS');
+    const ownTotal = ownItems.reduce((a, x) => a + PAYMENTS.find(q => q.id === x.id).amount, 0);
+    const iasTotal = iasItems.reduce((a, x) => a + PAYMENTS.find(q => q.id === x.id).amount, 0);
+    const railPayments = [
+      { title: 'Cost of ownership', sub: 'Taken from your rent account', total: G2(ownTotal), totalColor: '#fff', labelColor: 'rgba(213,255,234,.6)', bg: '#000', border: 'rgba(213,255,234,.1)', items: ownItems },
+      { title: 'Owed to IAS', sub: 'You send these funds', total: G2(iasTotal), totalColor: MINT, labelColor: MINT, bg: 'rgba(69,255,172,.05)', border: 'rgba(69,255,172,.26)', items: iasItems },
+    ];
+    const streamPayments = [
+      ...CLEARED.map(decorate),
+      { isItem: false, isToday: true, opacity: '1', dotBg: MINT, dotRing: '0 0 0 4px rgba(69,255,172,.2)' },
+      ...upcoming,
+    ];
+
+    // ── forecast ──
+    const pts = this.forecast();
+    const maxV = Math.max(...pts.map(q => q.income)) * 1.12;
+    const W = 336, H = 182;
+    const cursorIdx = Math.max(0, Math.min(pts.length - 1, s.cursor));
+    const cur = pts[cursorIdx];
+    const px = i => i / (pts.length - 1) * W;
+    const py = v => H - v / maxV * (H - 16) - 8;
+    const incomePath = pts.map((q, i) => `${i ? 'L' : 'M'}${px(i).toFixed(1)} ${py(q.income).toFixed(1)}`).join(' ');
+    const outPath = pts.map((q, i) => `${i ? 'L' : 'M'}${px(i).toFixed(1)} ${py(q.out).toFixed(1)}`).join(' ');
+    const eqMax = Math.max(...pts.map(q => q.equity));
+    const step = Math.max(1, Math.round(pts.length / 12));
+    const equityBars = pts.filter((q, i) => i % step === 0).map(q => ({ h: Math.max(4, q.equity / eqMax * 56).toFixed(0) + 'px', bg: q.y === cur.y ? MINT : 'rgba(174,255,214,.32)' }));
+    const nLabels = 4;
+    const xLabels = Array.from({ length: nLabels }, (_, i) => {
+      const yr = Math.round(i * (pts.length - 1) / (nLabels - 1));
+      return { label: yr === 0 ? 'Now' : 2026 + yr };
+    });
+
+    const setCursorFromEvent = (e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      const frac = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+      this.setState({ cursor: Math.round(frac * (pts.length - 1)) });
+    };
+
+    // ── calendar (October 2026) ──
+    const calendarDays = [];
+    for (let i = 0; i < CAL_START; i++) calendarDays.push({ label: '', bg: 'transparent', border: 'transparent', color: 'transparent', cursor: 'default', pick: () => {} });
+    for (let d = 1; d <= 31; d++) {
+      const picked = s.changeDate === d;
+      const past = d < 2;
+      calendarDays.push({
+        label: String(d), pick: past ? () => {} : () => this.setState({ changeDate: d }),
+        bg: picked ? MINT : 'rgba(213,255,234,.04)',
+        border: picked ? MINT : 'rgba(213,255,234,.1)',
+        color: picked ? '#001B02' : (past ? 'rgba(213,255,234,.22)' : 'rgba(255,255,255,.85)'),
+        cursor: past ? 'default' : 'pointer',
+      });
+    }
+
+    const emptyCopy = {
+      home: { t: 'No properties yet', b: 'Once your first purchase completes, it will appear here with live figures. Your portfolio manager will let you know.', c: 'Talk to your manager' },
+      payments: { t: 'Nothing due', b: 'You have no payments in the next 60 days. We will let you know well before anything is owed.', c: 'View past payments' },
+      forecast: { t: 'Not enough history yet', b: 'We need one full month of rent before we can project your returns honestly. Check back in October.', c: 'Learn how this works' },
+      notifications: { t: 'You are all caught up', b: 'Payment reminders and confirmations will land here.', c: 'Notification settings' },
+    };
+    const ec = emptyCopy[sc] || emptyCopy.home;
+
+    const titles = {
+      splash: 'Splash', login: 'Sign in', otp: 'One-time code', faceid: 'Face ID', onboard: 'Onboarding',
+      home: 'Home · Portfolio', homeLight: 'Home · light reference', property: 'Property detail',
+      payments: 'Payment timeline', forecast: 'Projected returns', notifications: 'Notifications',
+      profile: 'Profile', lock: 'Push · lock screen',
+    };
+    const notes = {
+      splash: 'Logomark and full lockup, reverse on Forest Green. Auto-advances to sign in.',
+      login: 'Apple Sign-In first, email and OTP as fallback. Full lockup only on entry screens.',
+      otp: 'Six-digit code with a numeric pad. Auto-advances when full.',
+      faceid: 'Biometric unlock on every subsequent launch.',
+      onboard: 'Three screens: what the app shows, how bills are explained, what the forecast does.',
+      home: 'Hero value in the display face, portfolio metrics, then properties. Tap any figure for its source.',
+      homeLight: 'Light-surface reference only. Forest Green on white, mints reserved for signal.',
+      property: 'Hero image, headline net return, the full expense breakdown and mortgage pay-down progress.',
+      payments: 'Chronological, with a hard split between cost of ownership and amounts owed to IAS.',
+      forecast: '5 / 10 / 20-year toggle. Tropical Mint for income, Aquamarine dashed for outgoings.',
+      notifications: 'In-app list plus lock-screen and banner previews.',
+      profile: 'Account rows, plus quick access to every loading, empty and error state.',
+      lock: 'Two push designs: a payment confirmation and an upcoming stage payment.',
+    };
+
+    const jump = [
+      ['Splash', 'splash'], ['Sign in', 'login'], ['Onboarding', 'onboard'], ['Home', 'home'],
+      ['Property detail', 'property'], ['Payments', 'payments'], ['Forecast', 'forecast'],
+      ['Notifications', 'notifications'], ['Lock screen', 'lock'], ['Profile', 'profile'], ['Light home', 'homeLight'],
+    ];
+
+    const tabDefs = [['Portfolio', 'home'], ['Payments', 'payments'], ['Forecast', 'forecast'], ['Profile', 'profile']];
+    const activeTab = sc === 'property' ? 'home' : sc === 'notifications' ? 'home' : sc;
+
+    const payment = (() => {
+      const all = [...PAYMENTS, ...CLEARED];
+      const it = all.find(x => x.id === s.paymentId) || PAYMENTS[3];
+      const d = decorate(it);
+      return { ...d, rows: it.rows.map(r => ({ k: r[0], v: r[1] })) };
+    })();
+
+    const fig = FIGS[s.figureKey] || FIGS.value;
+
+    return {
+      // chrome
+      deviceW: 402, deviceH: 874,
+      frameTransform: 'scale(' + s.scale.toFixed(4) + ')',
+      frameBoxW: (418 * s.scale).toFixed(1) + 'px', frameBoxH: (890 * s.scale).toFixed(1) + 'px',
+      screenTitle: titles[sc] || 'Screen', screenNote: notes[sc] || '',
+      jumpList: jump.map(([label, key]) => ({
+        label, go: () => this.go(key),
+        dot: sc === key ? MINT : 'rgba(213,255,234,.2)',
+        color: sc === key ? '#fff' : 'rgba(213,255,234,.5)',
+      })),
+
+      // routing
+      isSplash: sc === 'splash', isLogin: sc === 'login', isOtp: sc === 'otp', isFaceId: sc === 'faceid',
+      isOnboard: sc === 'onboard', isLock: sc === 'lock', isHomeLight: sc === 'homeLight',
+      showApp: inApp, isHome: sc === 'home', isProperty: sc === 'property', isPayments: sc === 'payments',
+      isForecast: sc === 'forecast', isNotifications: sc === 'notifications', isProfile: sc === 'profile',
+      showTabs: inApp && sc !== 'property',
+      isLoading: st === 'loading', isError: st === 'error', isEmpty: st === 'empty', isReady: st === 'ready',
+      skeleton: [1, 2, 3, 4],
+      emptyTitle: ec.t, emptyBody: ec.b, emptyCta: ec.c,
+      retry: () => this.setState({ forceState: 'loading' }, () => { clearTimeout(this._t3); this._t3 = setTimeout(() => this.setState({ forceState: 'ready' }), 1400); }),
+
+      // auth
+      email: s.email, setEmail: e => this.setState({ email: e.target.value }),
+      emailShown: s.email,
+      goLogin: () => this.go('login'), goOtp: () => this.go('otp', { otp: '' }),
+      goFaceId: () => this.go('faceid'), goOnboard: () => this.go('onboard', { onboardStep: 0 }),
+      goHome: () => this.go('home'), goSplash: () => this.go('splash', { otp: '' }),
+      goProfile: () => this.go('profile'), goPayments: () => this.go('payments'),
+      goForecast: () => this.go('forecast'), goNotifications: () => this.go('notifications'),
+      goLock: () => this.go('lock'),
+      otpBoxes: Array.from({ length: 6 }, (_, i) => ({
+        char: s.otp[i] || '',
+        border: i === s.otp.length ? 'rgba(69,255,172,.6)' : 'rgba(213,255,234,.14)',
+      })),
+      resendIn: s.resendIn,
+      keypad: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', '⌫'].map(k => ({
+        label: k,
+        press: () => {
+          if (!k) return;
+          if (k === '⌫') return this.setState({ otp: s.otp.slice(0, -1) });
+          const next = (s.otp + k).slice(0, 6);
+          this.setState({ otp: next });
+          if (next.length === 6) setTimeout(() => this.go('faceid'), 260);
+        },
+      })),
+      onboardDots: [0, 1, 2].map(i => ({ bg: i <= s.onboardStep ? MINT : 'rgba(213,255,234,.16)' })),
+      onboardKicker: ONBOARD[s.onboardStep].kicker, onboardTitle: ONBOARD[s.onboardStep].title,
+      onboardBody: ONBOARD[s.onboardStep].body, onboardArt: ONBOARD[s.onboardStep].art,
+      onboardCta: s.onboardStep === 2 ? 'Open my portfolio' : 'Next',
+      onboardNext: () => s.onboardStep === 2 ? this.go('home') : this.setState({ onboardStep: s.onboardStep + 1 }),
+
+      // home
+      memberName: 'Marcus Ade',
+      portfolioValue: G(totalValue), portfolioDelta: G(growth), portfolioDeltaPct: '4.9%',
+      openValueFigure: () => this.setState({ sheet: 'figure', figureKey: 'value' }),
+      metrics,
+      layoutA: layout === 'Hero stack', layoutB: layout === 'Split ledger', layoutC: layout === 'Bento',
+      notLayoutC: layout !== 'Bento',
+      sparkPath: 'M2 46 C18 42 28 36 44 30 S74 14 94 6',
+      heroLinePath: 'M4 58 C46 54 78 44 128 36 S244 18 336 8',
+      heroAreaPath: 'M4 58 C46 54 78 44 128 36 S244 18 336 8 L336 74 L4 74 Z',
+      showMilestone: gam,
+      milestonePctLabel: Math.round(milestonePct * 100) + '%',
+      milestoneWidth: (milestonePct * 100).toFixed(1) + '%',
+      milestoneRemaining: G(200000 - equity),
+      propertyCount: PROPERTIES.length + ' properties',
+      properties: PROPERTIES.map(q => {
+        const ex = q.expenses.reduce((a, e) => a + e.v, 0);
+        const net = q.rent ? q.rent - ex : 0;
+        return {
+          name: q.name, city: q.city, status: q.status, value: G(q.value),
+          netLabel: q.rent ? '+' + G2(net) + ' / mo' : 'Completes Mar 27',
+          netColor: q.rent ? MINT : 'rgba(213,255,234,.5)',
+          tagBg: q.rent ? 'rgba(69,255,172,.18)' : 'rgba(213,255,234,.12)',
+          tagColor: q.rent ? MINT : 'rgba(213,255,234,.7)',
+          open: () => this.go('property', { propertyId: q.id }),
+        };
+      }),
+      showCelebration: s.celebrated && this.props.celebrateMoments !== false,
+      dismissCelebration: () => this.setState({ celebrated: false }),
+
+      // property detail
+      prop: {
+        name: p.name, address: p.address, status: p.status,
+        tagBg: p.rent ? 'rgba(69,255,172,.18)' : 'rgba(213,255,234,.12)',
+        tagColor: p.rent ? MINT : 'rgba(213,255,234,.75)',
+        netShown: isOffPlan ? '—' : (s.netPeriod === 'mo' ? G2(pNet) : G2(pNet * 12)),
+        netSub: isOffPlan ? 'No income until completion' : (s.netPeriod === 'mo' ? 'after every running cost' : 'after every running cost'),
+        rent: p.rent ? G2(p.rent) : '—',
+        net: p.rent ? G2(pNet) : '—',
+        expenses: p.expenses.map(e => ({ k: e.k, v: G2(e.v), note: e.note, tap: () => this.setState({ sheet: 'figure', figureKey: 'propnet' }) })),
+        chartLine, chartArea: chartLine + ' L336 76 L0 76 Z',
+        facts: [
+          { label: 'Purchase price', value: G(p.purchase), tap: () => this.setState({ sheet: 'figure', figureKey: 'value' }) },
+          { label: 'Current value', value: G(p.value), tap: () => this.setState({ sheet: 'figure', figureKey: 'value' }) },
+          { label: 'Mortgage balance', value: p.mortgage ? G(p.mortgage) : 'Not drawn', tap: () => this.setState({ sheet: 'figure', figureKey: 'equity' }) },
+          { label: 'Monthly rent', value: p.rent ? G2(p.rent) : '—', tap: () => this.setState({ sheet: 'figure', figureKey: 'rent' }) },
+        ],
+        progressLabel: isOffPlan ? 'Stage payments' : 'Loan to value',
+        progressPct: isOffPlan ? '20% paid' : Math.round(p.mortgage / p.value * 100) + '%',
+        progressWidth: isOffPlan ? '20%' : (100 - p.mortgage / p.value * 100).toFixed(0) + '%',
+        progressNote: isOffPlan
+          ? 'Two of four instalments made. £24,500 due 1 October, then the mortgage is drawn at completion.'
+          : 'You own ' + (100 - p.mortgage / p.value * 100).toFixed(0) + '% of this property outright. Every valuation rise moves this along without you paying a penny more.',
+      },
+      netPeriods: ['mo', 'yr'].map(k => ({
+        label: k === 'mo' ? 'Monthly' : 'Annual',
+        bg: s.netPeriod === k ? 'rgba(69,255,172,.16)' : 'transparent',
+        color: s.netPeriod === k ? MINT : 'rgba(213,255,234,.45)',
+        set: () => this.setState({ netPeriod: k }),
+      })),
+      openNetFigure: () => this.setState({ sheet: 'figure', figureKey: 'propnet' }),
+
+      // payments
+      ownTotal: G2(ownTotal), iasTotal: G2(iasTotal),
+      timelineGrouped: tl === 'Grouped by month', timelineSplit: tl === 'Split rails', timelineStream: tl === 'Single stream',
+      groupedPayments, railPayments, streamPayments,
+      openChangeSheet: () => this.setState({ sheet: 'change', submitted: false }),
+
+      // forecast
+      yearTabs: [5, 10, 20].map(y => ({
+        label: y + ' years',
+        bg: s.years === y ? MINT : 'transparent',
+        color: s.years === y ? '#001B02' : 'rgba(213,255,234,.55)',
+        set: () => this.setState({ years: y, cursor: Math.min(s.cursor, y) }),
+      })),
+      gridLines: [0.2, 0.4, 0.6, 0.8].map(f => ({ y: (H * f).toFixed(0) })),
+      incomePath, outPath,
+      incomeArea: incomePath + ` L${W} ${H} L0 ${H} Z`,
+      chartFillOn: this.props.chartFill === true,
+      tapPointsOn: inter === 'Tap points',
+      tapDots: pts.filter((q, i) => i % step === 0).map((q, i) => ({ x: px(pts.indexOf(q)).toFixed(1), y: py(q.income).toFixed(1) })),
+      cursorX: px(cursorIdx).toFixed(1),
+      cursorIncomeY: py(cur.income).toFixed(1),
+      cursorOutY: py(cur.out).toFixed(1),
+      cursorYearLabel: cur.y === 0 ? 'This year · 2026' : 'Year ' + cur.y + ' · ' + (2026 + cur.y),
+      cursorIncome: G(cur.income), cursorOut: G(cur.out), cursorNet: G(cur.income - cur.out),
+      cursorEquity: G(cur.equity),
+      equityGrowth: G(cur.equity - 183000),
+      equityBars,
+      xLabels,
+      chartCursor: inter === 'Drag scrubber' ? 'ew-resize' : 'pointer',
+      chartDown: (e) => { if (inter === 'Pinned inspector') return; e.currentTarget.setPointerCapture(e.pointerId); this.setState({ dragging: true }); setCursorFromEvent(e); },
+      chartMove: (e) => { if (s.dragging && inter === 'Drag scrubber') setCursorFromEvent(e); },
+      chartUp: () => this.setState({ dragging: false }),
+      interactionHint: inter === 'Drag scrubber' ? 'Drag across the chart' : inter === 'Tap points' ? 'Tap a marker' : 'Step through years below',
+      inspectorOn: inter === 'Pinned inspector',
+      cursorPrev: () => this.setState({ cursor: Math.max(0, s.cursor - 1) }),
+      cursorNext: () => this.setState({ cursor: Math.min(pts.length - 1, s.cursor + 1) }),
+      inspectorRows: [
+        { k: 'Rental income', v: G(cur.income), color: MINT },
+        { k: 'Outgoings', v: '−' + G(cur.out), color: AQUA },
+        { k: 'Net cash', v: G(cur.income - cur.out), color: '#fff' },
+        { k: 'Portfolio value', v: G(cur.value), color: '#fff' },
+        { k: 'Equity', v: G(cur.equity), color: '#fff' },
+      ],
+
+      // notifications
+      lockNotifs: [
+        { when: 'now', title: 'Rent received — Ancoats Works', body: '£1,350.00 has cleared. Your September net return is on track.', go: () => this.go('payments') },
+        { when: '2h ago', title: 'Stage payment due 1 October', body: '£24,500 for Snow Hill Wharf. Tap to see the schedule or ask us to move the date.', go: () => this.go('payments') },
+      ],
+      inAppNotifs: [
+        { title: 'Rent received — Ancoats Works', when: '09:04', body: '£1,350.00 has cleared into your rent account. That is twelve months on time.', dot: MINT, bg: 'rgba(69,255,172,.07)', border: 'rgba(69,255,172,.26)', go: () => this.go('payments') },
+        { title: 'Rent received — Kirkgate Chambers', when: '09:02', body: '£1,050.00 has cleared into your rent account.', dot: MINT, bg: 'rgba(69,255,172,.07)', border: 'rgba(69,255,172,.26)', go: () => this.go('payments') },
+        { title: 'Stage payment due 1 October', when: 'Yesterday', body: '£24,500 for Snow Hill Wharf, Birmingham. The invoice arrives on 17 September.', dot: 'rgba(213,255,234,.5)', bg: '#000', border: 'rgba(213,255,234,.1)', go: () => this.go('payments') },
+        { title: 'Your August statement is ready', when: '1 Sep', body: 'Net return of £706.37 across both let properties.', dot: 'rgba(213,255,234,.3)', bg: '#000', border: 'rgba(213,255,234,.1)', go: () => this.go('home') },
+      ],
+      banner: s.banner, bannerTitle: 'Rent received — Ancoats Works', bannerBody: '£1,350.00 has cleared into your rent account.',
+      fireBanner: () => { this.setState({ banner: true }); clearTimeout(this._t2); this._t2 = setTimeout(() => this.setState({ banner: null }), 3200); },
+
+      // profile
+      profileRows: [
+        { label: 'Personal details', value: 'Marcus Ade', go: () => this.flash('Out of scope for Phase 1') },
+        { label: 'Company', value: 'Ade Holdings Ltd', go: () => this.flash('Out of scope for Phase 1') },
+        { label: 'Rent account', value: '•••• 4417', go: () => this.flash('Out of scope for Phase 1') },
+        { label: 'Notifications', value: 'All on', go: () => this.go('notifications') },
+        { label: 'Face ID', value: 'On', go: () => this.flash('Out of scope for Phase 1') },
+        { label: 'Light mode reference', value: 'View', go: () => this.go('homeLight') },
+        { label: 'Your portfolio manager', value: 'Jodie Marsden', go: () => this.flash('Out of scope for Phase 1') },
+      ],
+      stateChips: [
+        ['Portfolio · loading', 'home', 'loading'], ['Portfolio · empty', 'home', 'empty'], ['Portfolio · error', 'home', 'error'],
+        ['Payments · loading', 'payments', 'loading'], ['Payments · empty', 'payments', 'empty'], ['Payments · error', 'payments', 'error'],
+        ['Forecast · loading', 'forecast', 'loading'], ['Forecast · empty', 'forecast', 'empty'], ['Forecast · error', 'forecast', 'error'],
+      ].map(([label, screen, state]) => ({ label, go: () => this.setState({ screen, forceState: state, sheet: null }) })),
+
+      // sheets
+      sheetFigure: s.sheet === 'figure', sheetPayment: s.sheet === 'payment', sheetChange: s.sheet === 'change',
+      closeSheet: () => this.setState({ sheet: null }),
+      figure: { label: fig.label, value: fig.value, color: fig.color, note: fig.note, rows: fig.rows.map(r => ({ k: r[0], v: r[1], color: String(r[1]).startsWith('−') ? DIM : '#fff' })) },
+      payment,
+      changeTargetTitle: payment.title, changeTargetSub: payment.where, changeTargetAmount: payment.amount,
+      dowLabels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(l => ({ label: l })),
+      calendarDays,
+      changeNote: s.changeNote, setChangeNote: e => this.setState({ changeNote: e.target.value }),
+      submitLabel: s.changeDate ? 'Send request for ' + s.changeDate + ' Oct' : 'Pick a date',
+      submitBg: s.changeDate ? MINT : 'rgba(213,255,234,.08)',
+      submitColor: s.changeDate ? '#001B02' : 'rgba(213,255,234,.3)',
+      submitCursor: s.changeDate ? 'pointer' : 'default',
+      submitChange: () => {
+        if (!s.changeDate) return;
+        this.setState({ sheet: null, changeDate: null, changeNote: '' });
+        this.flash('Request sent. Jodie will confirm within one working day.');
+      },
+
+      tabs: tabDefs.map(([label, key]) => ({
+        label, go: () => this.go(key),
+        color: activeTab === key ? MINT : 'rgba(213,255,234,.45)',
+        isPortfolio: key === 'home', isPayments: key === 'payments',
+        isForecast: key === 'forecast', isProfile: key === 'profile',
+      })),
+
+      toast: s.toast,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
