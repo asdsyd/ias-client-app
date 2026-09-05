@@ -10,15 +10,19 @@
 <helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Bulevar';src:url('uploads/Bulevar-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Acumin Pro Wide';src:url('uploads/Acumin-Pro-Wide-Book.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Acumin Pro Wide';src:url('uploads/Acumin-Pro-Wide-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Acumin Pro Wide';src:url('uploads/Acumin-Pro-Wide-Bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap}
   html,body{margin:0;padding:0;background:#07100A;}
-  body{font-family:'Archivo',system-ui,sans-serif;font-stretch:112%;-webkit-font-smoothing:antialiased;}
+  body{font-family:'Acumin Pro Wide','Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
   a{color:#45FFAC;text-decoration:none}
   a:hover{color:#AEFFD6}
   *{box-sizing:border-box}
   ::-webkit-scrollbar{width:0;height:0}
-  input,textarea,button{font-family:inherit;font-stretch:inherit}
+  input,textarea,button{font-family:inherit}
   @keyframes iasFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @keyframes iasSheet{from{transform:translateY(100%)}to{transform:translateY(0)}}
   @keyframes iasPulse{0%{box-shadow:0 0 0 0 rgba(69,255,172,.45)}70%{box-shadow:0 0 0 14px rgba(69,255,172,0)}100%{box-shadow:0 0 0 0 rgba(69,255,172,0)}}
@@ -33,96 +37,87 @@
 
   <div style="display:flex;flex-direction:column;gap:26px;width:250px;flex:none;position:sticky;top:32px">
     <div style="display:flex;align-items:center;gap:10px">
-      <div style="width:26px;height:26px;border-radius:7px;border:1px solid rgba(213,255,234,.35);display:flex;align-items:center;justify-content:center;position:relative">
-        <span style="font:600 9px 'Archivo';letter-spacing:.06em;color:#D5FFEA">IAS</span>
-        <span style="position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:99px;background:#45FFAC"></span>
-      </div>
-      <div style="font:500 10px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">Client app · Phase 1</div>
+      <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:26px;height:26px;border-radius:6px;display:block;flex:none" />
+      <div style="font:500 10px 'Acumin Pro Wide';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">Freehold · Client app</div>
     </div>
     <div>
-      <div style="font:400 26px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.01em">{{ screenTitle }}</div>
-      <div style="margin-top:8px;font:400 12px/1.6 'Archivo';color:rgba(213,255,234,.55)">{{ screenNote }}</div>
+      <div style="font:400 26px/1.15 'Bulevar';color:#fff">{{ screenTitle }}</div>
+      <div style="margin-top:8px;font:400 12px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.55)">{{ screenNote }}</div>
     </div>
     <div style="height:1px;background:rgba(213,255,234,.12)"></div>
     <div style="display:flex;flex-direction:column;gap:7px">
-      <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.38);margin-bottom:3px">Jump to</div>
+      <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.38);margin-bottom:3px">Jump to</div>
       <sc-for list="{{ jumpList }}" as="j" hint-placeholder-count="6">
         <button onClick="{{ j.go }}" style="text-align:left;border:0;background:transparent;padding:5px 0;cursor:pointer;display:flex;align-items:center;gap:9px" style-hover="opacity:1">
           <span style="width:4px;height:4px;border-radius:99px;background:{{ j.dot }}"></span>
-          <span style="font:400 12px 'Archivo';color:{{ j.color }}">{{ j.label }}</span>
+          <span style="font:400 12px 'Acumin Pro Wide';color:{{ j.color }}">{{ j.label }}</span>
         </button>
       </sc-for>
     </div>
     <div style="height:1px;background:rgba(213,255,234,.12)"></div>
-    <div style="font:400 11px/1.65 'Archivo';color:rgba(213,255,234,.35)">Bulevar substituted with Space&nbsp;Grotesk and Acumin&nbsp;Pro&nbsp;Wide with Archivo&nbsp;(112% width) — swap in the licensed families for final build. Logo is a type-set placeholder.</div>
+    <div style="font:400 11px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.35)">Bulevar&nbsp;Regular sets every display size; Acumin&nbsp;Pro&nbsp;Wide&nbsp;Book sets all UI text, labels and body copy. Both are the real licensed files. Book is the only weight supplied, so heavier labels render synthetically bold — swap in the licensed families for final build. Logo is a type-set placeholder.</div>
   </div>
 
   <div style="flex:none;width:{{ frameBoxW }};height:{{ frameBoxH }}">
   <div style="display:flex;width:418px;height:890px;padding:8px;border-radius:56px;transform:{{ frameTransform }};transform-origin:top left;background:linear-gradient(160deg,#20301F,#0A140C 55%,#1A2A1A);box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(213,255,234,.08)">
   <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" width="{{ deviceW }}" height="{{ deviceH }}" hint-size="402px,874px">
-  <div style="position:relative;height:100%;display:flex;flex-direction:column;background:#001B02;font-family:'Archivo',sans-serif;font-stretch:112%">
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;background:radial-gradient(100% 52% at 74% 0%,rgba(22,120,64,.34) 0%,rgba(22,120,64,0) 62%),linear-gradient(180deg,#02290F 0%,#02240F 28%,#011A0B 56%,#000E06 100%);font-family:'Acumin Pro Wide','Archivo',sans-serif">
 
     <sc-if value="{{ isSplash }}" hint-placeholder-val="{{ true }}">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;background:#001B02;animation:iasFade .5s ease">
-        <div style="width:64px;height:64px;border-radius:18px;border:1.5px solid rgba(213,255,234,.45);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:26px">
-          <span style="font:600 20px 'Archivo';letter-spacing:.04em;color:#D5FFEA">IAS</span>
-          <span style="position:absolute;right:-3px;top:-3px;width:10px;height:10px;border-radius:99px;background:#45FFAC"></span>
-        </div>
-        <div style="font:200 15px 'Archivo';letter-spacing:.44em;text-transform:uppercase;color:#D5FFEA;padding-left:.44em">Income</div>
-        <div style="font:700 15px 'Archivo';letter-spacing:.44em;text-transform:uppercase;color:#D5FFEA;padding-left:.44em;margin-top:3px">After Sport</div>
-        <div style="position:absolute;bottom:70px;font:400 10px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.3)">Establishing secure session</div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;animation:iasFade .5s ease">
+        <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:76px;height:76px;border-radius:17px;display:block;flex:none;margin-bottom:26px;box-shadow:0 10px 30px rgba(0,0,0,.5)" />
+        <div style="font:400 34px 'Bulevar';color:#fff">Freehold</div>
+        <div style="margin-top:9px;font:400 9.5px 'Acumin Pro Wide';letter-spacing:.24em;text-transform:uppercase;color:rgba(213,255,234,.5);text-align:center">by IAS · Income After Sport</div>
+        <div style="position:absolute;bottom:70px;font:400 10px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.3)">Establishing secure session</div>
       </div>
     </sc-if>
 
     <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
       <div style="flex:1;display:flex;flex-direction:column;padding:120px 26px 44px;animation:iasFade .4s ease">
         <div style="display:flex;flex-direction:column;align-items:flex-start">
-          <div style="width:40px;height:40px;border-radius:12px;border:1.2px solid rgba(213,255,234,.4);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:20px">
-            <span style="font:600 13px 'Archivo';letter-spacing:.04em;color:#D5FFEA">IAS</span>
-            <span style="position:absolute;right:-2px;top:-2px;width:7px;height:7px;border-radius:99px;background:#45FFAC"></span>
-          </div>
-          <div style="font:200 13px 'Archivo';letter-spacing:.4em;text-transform:uppercase;color:#D5FFEA">Income</div>
-          <div style="font:700 13px 'Archivo';letter-spacing:.4em;text-transform:uppercase;color:#D5FFEA;margin-top:2px">After Sport</div>
+          <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:44px;height:44px;border-radius:10px;display:block;flex:none;margin-bottom:18px" />
+          <div style="font:400 22px 'Bulevar';color:#fff">Freehold</div>
+          <div style="margin-top:6px;font:400 9px 'Acumin Pro Wide';letter-spacing:.22em;text-transform:uppercase;color:rgba(213,255,234,.45)">by IAS · Income After Sport</div>
         </div>
-        <div style="margin-top:44px;font:400 30px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.015em">Welcome back.</div>
-        <div style="margin-top:12px;font:400 13px/1.6 'Archivo';color:rgba(213,255,234,.6);max-width:280px">Your portfolio, in real time. Sign in the way you prefer.</div>
+        <div style="margin-top:44px;font:400 30px/1.15 'Bulevar';color:#fff">Welcome back.</div>
+        <div style="margin-top:12px;font:400 13px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.6);max-width:280px">Your portfolio, in real time. Sign in the way you prefer.</div>
 
         <div style="margin-top:40px;display:flex;flex-direction:column;gap:12px">
-          <button onClick="{{ goFaceId }}" style="height:52px;border-radius:14px;border:0;background:#fff;color:#000;font:600 14px 'Archivo';display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-active="transform:scale(.985)">
+          <button onClick="{{ goFaceId }}" style="height:52px;border-radius:14px;border:0;background:#fff;color:#000;font:500 14px 'Acumin Pro Wide';display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-active="transform:scale(.985)">
             <svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor"><path d="M12.3 9.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.9-.8C3.3 4.5 1.8 5.5 1 7c-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.8 2.2 1.1 0 1.5-.7 2.9-.7s1.7.7 2.9.7c1.2 0 2-1.1 2.7-2.2.5-.8.8-1.6 1-2.4-.1 0-2.1-.8-2.1-3.8zM9.9 3c.6-.7 1-1.7.9-2.7-.9.1-2 .6-2.6 1.3-.6.6-1 1.6-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
             Sign in with Apple
           </button>
           <div style="display:flex;align-items:center;gap:12px;margin:6px 0">
             <div style="flex:1;height:1px;background:rgba(213,255,234,.14)"></div>
-            <span style="font:500 9px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.35)">or</span>
+            <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.35)">or</span>
             <div style="flex:1;height:1px;background:rgba(213,255,234,.14)"></div>
           </div>
           <div>
-            <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5);margin-bottom:9px">Email address</div>
+            <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5);margin-bottom:9px">Email address</div>
             <input value="{{ email }}" onChange="{{ setEmail }}" placeholder="you@example.com" style="width:100%;height:52px;border-radius:14px;background:#000;border:1px solid rgba(213,255,234,.16);color:#fff;padding:0 16px;font-size:15px;outline:none" style-focus="border-color:rgba(69,255,172,.6)" />
           </div>
-          <button onClick="{{ goOtp }}" style="height:52px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 14px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">Send me a code</button>
+          <button onClick="{{ goOtp }}" style="height:52px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 14px 'Acumin Pro Wide';cursor:pointer" style-active="transform:scale(.985)">Send me a code</button>
         </div>
         <div style="flex:1"></div>
-        <div style="font:400 11px/1.6 'Archivo';color:rgba(213,255,234,.32);text-align:center">IAS never asks for card details in the app.<br>Need help? Message your portfolio manager.</div>
+        <div style="font:400 11px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.32);text-align:center">IAS never asks for card details in the app.<br>Need help? Message your portfolio manager.</div>
       </div>
     </sc-if>
 
     <sc-if value="{{ isOtp }}" hint-placeholder-val="{{ false }}">
       <div style="flex:1;display:flex;flex-direction:column;padding:100px 26px 44px;animation:iasFade .4s ease">
-        <button onClick="{{ goLogin }}" style="align-self:flex-start;background:transparent;border:0;color:rgba(213,255,234,.6);font:400 13px 'Archivo';cursor:pointer;padding:0;margin-bottom:28px">← Back</button>
-        <div style="font:400 26px/1.2 'Space Grotesk';color:#fff;letter-spacing:-.01em">Enter your code</div>
-        <div style="margin-top:10px;font:400 13px/1.6 'Archivo';color:rgba(213,255,234,.6)">We sent a six-digit code to {{ emailShown }}.</div>
+        <button onClick="{{ goLogin }}" style="align-self:flex-start;background:transparent;border:0;color:rgba(213,255,234,.6);font:400 13px 'Acumin Pro Wide';cursor:pointer;padding:0;margin-bottom:28px">← Back</button>
+        <div style="font:400 26px/1.2 'Bulevar';color:#fff">Enter your code</div>
+        <div style="margin-top:10px;font:400 13px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.6)">We sent a six-digit code to {{ emailShown }}.</div>
         <div style="margin-top:34px;display:flex;gap:9px">
           <sc-for list="{{ otpBoxes }}" as="b" hint-placeholder-count="6">
-            <div style="flex:1;height:58px;border-radius:12px;background:#000;border:1px solid {{ b.border }};display:flex;align-items:center;justify-content:center;font:400 22px 'Space Grotesk';color:#fff">{{ b.char }}</div>
+            <div style="flex:1;height:58px;border-radius:12px;background:#000;border:1px solid {{ b.border }};display:flex;align-items:center;justify-content:center;font:400 22px 'Bulevar';color:#fff">{{ b.char }}</div>
           </sc-for>
         </div>
-        <div style="margin-top:18px;font:400 12px 'Archivo';color:rgba(213,255,234,.4)">Resend in {{ resendIn }}s</div>
+        <div style="margin-top:18px;font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.4)">Resend in {{ resendIn }}s</div>
         <div style="flex:1"></div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
           <sc-for list="{{ keypad }}" as="k" hint-placeholder-count="12">
-            <button onClick="{{ k.press }}" style="height:56px;border-radius:14px;background:#000;border:1px solid rgba(213,255,234,.1);color:#fff;font:400 21px 'Space Grotesk';cursor:pointer" style-active="background:rgba(69,255,172,.14)">{{ k.label }}</button>
+            <button onClick="{{ k.press }}" style="height:56px;border-radius:14px;background:#000;border:1px solid rgba(213,255,234,.1);color:#fff;font:400 21px 'Bulevar';cursor:pointer" style-active="background:rgba(69,255,172,.14)">{{ k.label }}</button>
           </sc-for>
         </div>
       </div>
@@ -136,10 +131,10 @@
           <span style="position:absolute;top:14px;right:24px;width:5px;height:14px;border-radius:99px;background:#45FFAC"></span>
           <span style="position:absolute;bottom:22px;left:26px;right:26px;height:5px;border-radius:99px;background:#45FFAC"></span>
         </div>
-        <div style="margin-top:30px;font:400 19px 'Space Grotesk';color:#fff">Face ID</div>
-        <div style="margin-top:8px;font:400 13px 'Archivo';color:rgba(213,255,234,.55)">Unlock Income After Sport</div>
-        <button onClick="{{ goOnboard }}" style="margin-top:36px;height:46px;padding:0 26px;border-radius:99px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">Scan face</button>
-        <button onClick="{{ goHome }}" style="margin-top:14px;background:transparent;border:0;color:rgba(213,255,234,.45);font:400 12px 'Archivo';cursor:pointer">Use passcode instead</button>
+        <div style="margin-top:30px;font:400 19px 'Bulevar';color:#fff">Face ID</div>
+        <div style="margin-top:8px;font:400 13px 'Acumin Pro Wide';color:rgba(213,255,234,.55)">Unlock Freehold</div>
+        <button onClick="{{ goOnboard }}" style="margin-top:36px;height:46px;padding:0 26px;border-radius:99px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer" style-active="transform:scale(.985)">Scan face</button>
+        <button onClick="{{ goHome }}" style="margin-top:14px;background:transparent;border:0;color:rgba(213,255,234,.45);font:400 12px 'Acumin Pro Wide';cursor:pointer">Use passcode instead</button>
       </div>
     </sc-if>
 
@@ -154,41 +149,38 @@
           <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.5" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"></rect></svg>
           <div style="position:relative;font:400 10px ui-monospace,monospace;letter-spacing:.1em;color:rgba(213,255,234,.5);text-transform:uppercase">{{ onboardArt }}</div>
         </div>
-        <div style="margin-top:38px;font:200 12px 'Archivo';letter-spacing:.32em;text-transform:uppercase;color:rgba(213,255,234,.55)">{{ onboardKicker }}</div>
-        <div style="margin-top:10px;font:400 30px/1.15 'Space Grotesk';color:#fff;letter-spacing:-.015em;max-width:300px">{{ onboardTitle }}</div>
-        <div style="margin-top:14px;font:400 14px/1.65 'Archivo';color:rgba(213,255,234,.62);max-width:300px;text-wrap:pretty">{{ onboardBody }}</div>
+        <div style="margin-top:38px;font:400 12px 'Acumin Pro Wide';letter-spacing:.32em;text-transform:uppercase;color:rgba(213,255,234,.55)">{{ onboardKicker }}</div>
+        <div style="margin-top:10px;font:400 30px/1.15 'Bulevar';color:#fff;max-width:300px">{{ onboardTitle }}</div>
+        <div style="margin-top:14px;font:400 14px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.62);max-width:300px;text-wrap:pretty">{{ onboardBody }}</div>
         <div style="flex:1"></div>
         <div style="display:flex;align-items:center;gap:14px">
-          <button onClick="{{ goHome }}" style="background:transparent;border:0;color:rgba(213,255,234,.45);font:400 13px 'Archivo';cursor:pointer;padding:0">Skip</button>
+          <button onClick="{{ goHome }}" style="background:transparent;border:0;color:rgba(213,255,234,.45);font:400 13px 'Acumin Pro Wide';cursor:pointer;padding:0">Skip</button>
           <div style="flex:1"></div>
-          <button onClick="{{ onboardNext }}" style="height:52px;padding:0 30px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 14px 'Archivo';cursor:pointer" style-active="transform:scale(.985)">{{ onboardCta }}</button>
+          <button onClick="{{ onboardNext }}" style="height:52px;padding:0 30px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 14px 'Acumin Pro Wide';cursor:pointer" style-active="transform:scale(.985)">{{ onboardCta }}</button>
         </div>
       </div>
     </sc-if>
 
     <sc-if value="{{ isLock }}" hint-placeholder-val="{{ false }}">
-      <div style="flex:1;position:relative;background:linear-gradient(170deg,#02240A 0%,#001B02 45%,#000 100%);display:flex;flex-direction:column;align-items:center;padding:66px 14px 30px">
-        <div style="font:300 15px 'Archivo';letter-spacing:.06em;color:rgba(255,255,255,.8)">Thursday 3 September</div>
-        <div style="font:300 74px/1 'Space Grotesk';color:#fff;letter-spacing:-.02em;margin-top:2px">9:41</div>
+      <div style="flex:1;position:relative;background:linear-gradient(170deg,#075026 0%,#01230F 45%,#000A04 100%);display:flex;flex-direction:column;align-items:center;padding:66px 14px 30px">
+        <div style="font:400 15px 'Acumin Pro Wide';letter-spacing:.06em;color:rgba(255,255,255,.8)">Thursday 3 September</div>
+        <div style="font:400 74px/1 'Bulevar';color:#fff;margin-top:2px">9:41</div>
         <div style="width:100%;display:flex;flex-direction:column;gap:10px;margin-top:52px">
           <sc-for list="{{ lockNotifs }}" as="n" hint-placeholder-count="2">
             <div onClick="{{ n.go }}" style="border-radius:20px;background:rgba(0,0,0,.55);backdrop-filter:blur(24px);border:1px solid rgba(213,255,234,.12);padding:13px 14px;cursor:pointer">
               <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
-                <div style="width:19px;height:19px;border-radius:5px;border:1px solid rgba(213,255,234,.5);display:flex;align-items:center;justify-content:center;position:relative;flex:none">
-                  <span style="font:600 6.5px 'Archivo';color:#D5FFEA">IAS</span>
-                  <span style="position:absolute;right:-1.5px;top:-1.5px;width:4px;height:4px;border-radius:99px;background:#45FFAC"></span>
-                </div>
-                <span style="font:600 11px 'Archivo';letter-spacing:.03em;color:rgba(255,255,255,.9);text-transform:uppercase">Income After Sport</span>
+                <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:19px;height:19px;border-radius:4.5px;display:block;flex:none" />
+                <span style="font:500 11px 'Acumin Pro Wide';letter-spacing:.03em;color:rgba(255,255,255,.9);text-transform:uppercase">Freehold</span>
                 <span style="flex:1"></span>
-                <span style="font:400 11px 'Archivo';color:rgba(255,255,255,.5)">{{ n.when }}</span>
+                <span style="font:400 11px 'Acumin Pro Wide';color:rgba(255,255,255,.5)">{{ n.when }}</span>
               </div>
-              <div style="font:600 14px 'Archivo';color:#fff">{{ n.title }}</div>
-              <div style="margin-top:3px;font:400 13px/1.45 'Archivo';color:rgba(255,255,255,.72)">{{ n.body }}</div>
+              <div style="font:500 14px 'Acumin Pro Wide';color:#fff">{{ n.title }}</div>
+              <div style="margin-top:3px;font:400 13px/1.45 'Acumin Pro Wide';color:rgba(255,255,255,.72)">{{ n.body }}</div>
             </div>
           </sc-for>
         </div>
         <div style="flex:1"></div>
-        <div style="font:400 11px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35)">Swipe up to open</div>
+        <div style="font:400 11px 'Acumin Pro Wide';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35)">Swipe up to open</div>
       </div>
     </sc-if>
 
@@ -196,37 +188,34 @@
       <div style="flex:1;display:flex;flex-direction:column;min-height:0;background:#FBFDFB">
         <div style="flex:none;background:#001B02;padding:56px 20px 14px;display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:9px">
-            <div style="width:26px;height:26px;border-radius:7px;border:1px solid rgba(213,255,234,.4);display:flex;align-items:center;justify-content:center;position:relative">
-              <span style="font:600 9px 'Archivo';color:#D5FFEA">IAS</span>
-              <span style="position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:99px;background:#45FFAC"></span>
-            </div>
-            <span style="font:500 10px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Light reference</span>
+            <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:26px;height:26px;border-radius:6px;display:block;flex:none" />
+            <span style="font:500 10px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Light reference</span>
           </div>
-          <button onClick="{{ goProfile }}" style="background:transparent;border:0;color:rgba(213,255,234,.6);font:400 12px 'Archivo';cursor:pointer">Close</button>
+          <button onClick="{{ goProfile }}" style="background:transparent;border:0;color:rgba(213,255,234,.6);font:400 12px 'Acumin Pro Wide';cursor:pointer">Close</button>
         </div>
         <div style="flex:1;overflow-y:auto;padding:0 20px 110px">
-        <div style="margin-top:30px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(0,27,2,.45)">Total portfolio value</div>
-        <div style="margin-top:10px;font:400 50px/1 'Space Grotesk';color:#001B02;letter-spacing:-.025em">{{ portfolioValue }}</div>
+        <div style="margin-top:30px;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(0,27,2,.45)">Total portfolio value</div>
+        <div style="margin-top:10px;font:400 50px/1 'Bulevar';color:#001B02">{{ portfolioValue }}</div>
         <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
-          <span style="padding:4px 9px;border-radius:99px;background:#001B02;color:#45FFAC;font:600 11px 'Archivo'">↑ {{ portfolioDelta }}</span>
-          <span style="font:400 12px 'Archivo';color:rgba(0,27,2,.55)">since purchase</span>
+          <span style="padding:4px 9px;border-radius:99px;background:#001B02;color:#45FFAC;font:500 11px 'Acumin Pro Wide'">↑ {{ portfolioDelta }}</span>
+          <span style="font:400 12px 'Acumin Pro Wide';color:rgba(0,27,2,.55)">since purchase</span>
         </div>
         <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
             <div style="border-radius:16px;background:#fff;border:1px solid rgba(0,27,2,.1);padding:14px">
-              <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(0,27,2,.45)">{{ m.label }}</div>
-              <div style="margin-top:9px;font:400 22px 'Space Grotesk';color:#001B02">{{ m.value }}</div>
+              <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(0,27,2,.45)">{{ m.label }}</div>
+              <div style="margin-top:9px;font:400 22px 'Bulevar';color:#001B02">{{ m.value }}</div>
             </div>
           </sc-for>
         </div>
         <div style="margin-top:24px;border-radius:18px;background:#001B02;padding:16px">
-          <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.55)">Ancoats Works, Manchester</div>
+          <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.55)">Ancoats Works, Manchester</div>
           <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between">
-            <span style="font:400 24px 'Space Grotesk';color:#fff">£231,500</span>
-            <span style="font:600 13px 'Archivo';color:#45FFAC">+£385.56 / mo</span>
+            <span style="font:400 24px 'Bulevar';color:#fff">£231,500</span>
+            <span style="font:500 13px 'Acumin Pro Wide';color:#45FFAC">+£385.56 / mo</span>
           </div>
         </div>
-        <div style="margin-top:18px;font:400 11px/1.6 'Archivo';color:rgba(0,27,2,.42)">Light surfaces are for documents and shared views. Mints stay reserved for signal, never decoration.</div>
+        <div style="margin-top:18px;font:400 11px/1.6 'Acumin Pro Wide';color:rgba(0,27,2,.42)">Light surfaces are for documents and shared views. Mints stay reserved for signal, never decoration.</div>
         </div>
       </div>
     </sc-if>
@@ -251,20 +240,20 @@
 
         <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;text-align:center">
-            <div style="width:52px;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.3);display:flex;align-items:center;justify-content:center;font:400 22px 'Space Grotesk';color:#D5FFEA">!</div>
-            <div style="margin-top:22px;font:400 21px 'Space Grotesk';color:#fff">We can't reach your figures</div>
-            <div style="margin-top:10px;font:400 13px/1.65 'Archivo';color:rgba(213,255,234,.55)">Your data is safe. This is a connection problem on our side, and nothing in your portfolio has changed.</div>
-            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 26px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 13px 'Archivo';cursor:pointer">Try again</button>
-            <div style="margin-top:14px;font:400 11px 'Archivo';color:rgba(213,255,234,.3)">Last updated 3 Sep, 09:12</div>
+            <div style="width:52px;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.3);display:flex;align-items:center;justify-content:center;font:400 22px 'Bulevar';color:#D5FFEA">!</div>
+            <div style="margin-top:22px;font:400 21px 'Bulevar';color:#fff">We can't reach your figures</div>
+            <div style="margin-top:10px;font:400 13px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.55)">Your data is safe. This is a connection problem on our side, and nothing in your portfolio has changed.</div>
+            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 26px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 13px 'Acumin Pro Wide';cursor:pointer">Try again</button>
+            <div style="margin-top:14px;font:400 11px 'Acumin Pro Wide';color:rgba(213,255,234,.3)">Last updated 3 Sep, 09:12</div>
           </div>
         </sc-if>
 
         <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;text-align:center">
             <div style="width:74px;height:74px;border-radius:18px;border:1px dashed rgba(213,255,234,.28)"></div>
-            <div style="margin-top:24px;font:400 21px/1.3 'Space Grotesk';color:#fff">{{ emptyTitle }}</div>
-            <div style="margin-top:10px;font:400 13px/1.65 'Archivo';color:rgba(213,255,234,.55)">{{ emptyBody }}</div>
-            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 24px;border-radius:14px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">{{ emptyCta }}</button>
+            <div style="margin-top:24px;font:400 21px/1.3 'Bulevar';color:#fff">{{ emptyTitle }}</div>
+            <div style="margin-top:10px;font:400 13px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.55)">{{ emptyBody }}</div>
+            <button onClick="{{ retry }}" style="margin-top:26px;height:48px;padding:0 24px;border-radius:14px;border:1px solid rgba(213,255,234,.25);background:transparent;color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer">{{ emptyCta }}</button>
           </div>
         </sc-if>
 
@@ -272,11 +261,11 @@
           <div style="flex:1;overflow-y:auto;min-height:0">
 
             <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-              <div style="padding:56px 0 112px;animation:iasFade .35s ease">
+              <div style="padding:56px 0 126px;animation:iasFade .35s ease">
                 <div style="padding:0 20px;display:flex;align-items:center;justify-content:space-between">
                   <div>
-                    <div style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">Good morning</div>
-                    <div style="font:600 16px 'Archivo';color:#fff;margin-top:2px">{{ memberName }}</div>
+                    <div style="font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">Good morning</div>
+                    <div style="font:500 16px 'Acumin Pro Wide';color:#fff;margin-top:2px">{{ memberName }}</div>
                   </div>
                   <button onClick="{{ goNotifications }}" style="width:38px;height:38px;border-radius:99px;background:#000;border:1px solid rgba(213,255,234,.12);position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center">
                     <svg width="15" height="16" viewBox="0 0 15 16" fill="none"><path d="M7.5 1.2c-2.4 0-4 1.8-4 4.1 0 3.2-1.1 4-1.1 4.8 0 .5.4.8 1 .8h8.2c.6 0 1-.3 1-.8 0-.8-1.1-1.6-1.1-4.8 0-2.3-1.6-4.1-4-4.1z" stroke="#D5FFEA" stroke-width="1.1" stroke-linejoin="round"/><path d="M6 13.3a1.6 1.6 0 0 0 3 0" stroke="#D5FFEA" stroke-width="1.1" stroke-linecap="round"/></svg>
@@ -288,8 +277,8 @@
                   <div style="margin:18px 20px 0;border-radius:16px;background:rgba(69,255,172,.1);border:1px solid rgba(69,255,172,.32);padding:13px 14px;display:flex;align-items:center;gap:12px">
                     <div style="width:8px;height:8px;border-radius:99px;background:#45FFAC;flex:none;animation:iasPulse 2.4s ease-in-out infinite"></div>
                     <div style="flex:1">
-                      <div style="font:600 12.5px 'Archivo';color:#45FFAC">September rent has cleared</div>
-                      <div style="margin-top:2px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.7)">£2,400.00 received from both tenants, on time.</div>
+                      <div style="font:500 12.5px 'Acumin Pro Wide';color:#45FFAC">September rent has cleared</div>
+                      <div style="margin-top:2px;font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.7)">£2,400.00 received from both tenants, on time.</div>
                     </div>
                     <button onClick="{{ dismissCelebration }}" style="background:transparent;border:0;color:rgba(213,255,234,.45);font-size:16px;cursor:pointer;padding:0 2px">×</button>
                   </div>
@@ -297,23 +286,23 @@
 
                 <sc-if value="{{ layoutA }}" hint-placeholder-val="{{ true }}">
                   <div style="padding:0 20px">
-                    <div style="margin-top:32px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
+                    <div style="margin-top:32px;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
                     <button onClick="{{ openValueFigure }}" style="margin-top:10px;background:transparent;border:0;padding:0;display:block;text-align:left;cursor:pointer">
-                      <div style="font:400 54px/1 'Space Grotesk';color:#fff;letter-spacing:-.03em">{{ portfolioValue }}</div>
+                      <div style="font:400 54px/1 'Bulevar';color:#fff">{{ portfolioValue }}</div>
                     </button>
                     <div style="margin-top:14px;display:flex;align-items:center;gap:9px">
-                      <span style="padding:4px 9px;border-radius:99px;background:rgba(69,255,172,.14);color:#45FFAC;font:600 11.5px 'Archivo'">↑ {{ portfolioDelta }}</span>
-                      <span style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ portfolioDeltaPct }} since purchase</span>
+                      <span style="padding:4px 9px;border-radius:99px;background:rgba(69,255,172,.14);color:#45FFAC;font:500 11.5px 'Acumin Pro Wide'">↑ {{ portfolioDelta }}</span>
+                      <span style="font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ portfolioDeltaPct }} since purchase</span>
                     </div>
                     <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
                       <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
                         <button onClick="{{ m.tap }}" style="text-align:left;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:14px;cursor:pointer" style-active="border-color:rgba(69,255,172,.45)">
                           <div style="display:flex;align-items:center;justify-content:space-between">
-                            <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</span>
-                            <span style="font:400 11px 'Archivo';color:rgba(213,255,234,.3)">ⓘ</span>
+                            <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</span>
+                            <span style="font:400 11px 'Acumin Pro Wide';color:rgba(213,255,234,.3)">ⓘ</span>
                           </div>
-                          <div style="margin-top:10px;font:400 23px 'Space Grotesk';color:{{ m.color }}">{{ m.value }}</div>
-                          <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.4)">{{ m.sub }}</div>
+                          <div style="margin-top:10px;font:400 23px 'Bulevar';color:{{ m.color }}">{{ m.value }}</div>
+                          <div style="margin-top:4px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.4)">{{ m.sub }}</div>
                         </button>
                       </sc-for>
                     </div>
@@ -324,11 +313,11 @@
                   <div style="padding:0 20px">
                     <div style="margin-top:30px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
                       <div>
-                        <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Portfolio value</div>
+                        <div style="font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Portfolio value</div>
                         <button onClick="{{ openValueFigure }}" style="margin-top:8px;background:transparent;border:0;padding:0;text-align:left;cursor:pointer;display:block">
-                          <div style="font:400 40px/1 'Space Grotesk';color:#fff;letter-spacing:-.025em">{{ portfolioValue }}</div>
+                          <div style="font:400 40px/1 'Bulevar';color:#fff">{{ portfolioValue }}</div>
                         </button>
-                        <div style="margin-top:9px;font:600 11.5px 'Archivo';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
+                        <div style="margin-top:9px;font:500 11.5px 'Acumin Pro Wide';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
                       </div>
                       <svg width="96" height="52" viewBox="0 0 96 52" fill="none" style="flex:none"><path d="{{ sparkPath }}" stroke="#45FFAC" stroke-width="1.6" stroke-linecap="round"/></svg>
                     </div>
@@ -336,11 +325,11 @@
                       <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
                         <button onClick="{{ m.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.09);padding:15px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
                           <div>
-                            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</div>
-                            <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.35)">{{ m.sub }}</div>
+                            <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ m.label }}</div>
+                            <div style="margin-top:4px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.35)">{{ m.sub }}</div>
                           </div>
                           <div style="display:flex;align-items:center;gap:10px">
-                            <span style="font:400 21px 'Space Grotesk';color:{{ m.color }}">{{ m.value }}</span>
+                            <span style="font:400 21px 'Bulevar';color:{{ m.color }}">{{ m.value }}</span>
                             <span style="color:rgba(213,255,234,.3);font-size:13px">›</span>
                           </div>
                         </button>
@@ -352,19 +341,19 @@
                 <sc-if value="{{ layoutC }}" hint-placeholder-val="{{ false }}">
                   <div style="padding:0 20px">
                     <div style="margin-top:28px;border-radius:22px;background:#000;border:1px solid rgba(213,255,234,.1);padding:18px 18px 0;overflow:hidden">
-                      <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
+                      <div style="font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Total portfolio value</div>
                       <button onClick="{{ openValueFigure }}" style="margin-top:8px;background:transparent;border:0;padding:0;text-align:left;display:block;cursor:pointer">
-                        <div style="font:400 42px/1 'Space Grotesk';color:#fff;letter-spacing:-.025em">{{ portfolioValue }}</div>
+                        <div style="font:400 42px/1 'Bulevar';color:#fff">{{ portfolioValue }}</div>
                       </button>
-                      <div style="margin-top:8px;font:600 11.5px 'Archivo';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
+                      <div style="margin-top:8px;font:500 11.5px 'Acumin Pro Wide';color:#45FFAC">↑ {{ portfolioDelta }} · {{ portfolioDeltaPct }}</div>
                       <svg width="100%" height="74" viewBox="0 0 340 74" preserveAspectRatio="none" fill="none" style="margin-top:8px;display:block"><path d="{{ heroAreaPath }}" fill="rgba(69,255,172,.14)"/><path d="{{ heroLinePath }}" stroke="#45FFAC" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div style="margin-top:10px;display:grid;grid-template-columns:1.35fr 1fr;gap:10px">
                       <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
                         <button onClick="{{ m.tap }}" style="text-align:left;border-radius:16px;background:{{ m.tileBg }};border:1px solid {{ m.tileBorder }};padding:14px;cursor:pointer;grid-column:{{ m.span }}">
-                          <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:{{ m.tileLabel }}">{{ m.label }}</div>
-                          <div style="margin-top:10px;font:400 24px 'Space Grotesk';color:{{ m.tileValue }}">{{ m.value }}</div>
-                          <div style="margin-top:4px;font:400 10.5px 'Archivo';color:{{ m.tileSub }}">{{ m.sub }}</div>
+                          <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:{{ m.tileLabel }}">{{ m.label }}</div>
+                          <div style="margin-top:10px;font:400 24px 'Bulevar';color:{{ m.tileValue }}">{{ m.value }}</div>
+                          <div style="margin-top:4px;font:400 10.5px 'Acumin Pro Wide';color:{{ m.tileSub }}">{{ m.sub }}</div>
                         </button>
                       </sc-for>
                     </div>
@@ -374,12 +363,12 @@
                 <sc-if value="{{ showMilestone }}" hint-placeholder-val="{{ true }}">
                   <div style="margin:22px 20px 0;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
                     <div style="display:flex;align-items:center;justify-content:space-between">
-                      <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Next milestone</span>
-                      <span style="font:600 11px 'Archivo';color:#45FFAC">{{ milestonePctLabel }}</span>
+                      <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Next milestone</span>
+                      <span style="font:500 11px 'Acumin Pro Wide';color:#45FFAC">{{ milestonePctLabel }}</span>
                     </div>
                     <div style="margin-top:11px;display:flex;align-items:baseline;gap:8px">
-                      <span style="font:400 19px 'Space Grotesk';color:#fff">£200,000 equity</span>
-                      <span style="font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ milestoneRemaining }} to go</span>
+                      <span style="font:400 19px 'Bulevar';color:#fff">£200,000 equity</span>
+                      <span style="font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ milestoneRemaining }} to go</span>
                     </div>
                     <div style="margin-top:13px;height:6px;border-radius:99px;background:rgba(213,255,234,.12);overflow:hidden">
                       <div style="height:100%;border-radius:99px;background:#45FFAC;width:{{ milestoneWidth }}"></div>
@@ -388,8 +377,8 @@
                 </sc-if>
 
                 <div style="margin:28px 20px 0;display:flex;align-items:center;justify-content:space-between">
-                  <span style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Your properties</span>
-                  <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.4)">{{ propertyCount }}</span>
+                  <span style="font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Your properties</span>
+                  <span style="font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.4)">{{ propertyCount }}</span>
                 </div>
 
                 <sc-if value="{{ layoutC }}" hint-placeholder-val="{{ false }}">
@@ -399,14 +388,14 @@
                         <div style="height:104px;position:relative;background:#03210B">
                           <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.55" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"/></svg>
                           <div style="position:absolute;left:11px;bottom:9px;font:400 8.5px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(213,255,234,.5)">property shot</div>
-                          <div style="position:absolute;right:9px;top:9px;padding:3px 8px;border-radius:99px;background:{{ p.tagBg }};font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.tagColor }}">{{ p.status }}</div>
+                          <div style="position:absolute;right:9px;top:9px;padding:3px 8px;border-radius:99px;background:{{ p.tagBg }};font:500 8.5px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:{{ p.tagColor }}">{{ p.status }}</div>
                         </div>
                         <div style="padding:13px 14px 15px">
-                          <div style="font:600 12.5px/1.35 'Archivo';color:#fff">{{ p.name }}</div>
-                          <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.city }}</div>
+                          <div style="font:500 12.5px/1.35 'Acumin Pro Wide';color:#fff">{{ p.name }}</div>
+                          <div style="margin-top:3px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">{{ p.city }}</div>
                           <div style="margin-top:12px;display:flex;align-items:baseline;justify-content:space-between">
-                            <span style="font:400 19px 'Space Grotesk';color:#fff">{{ p.value }}</span>
-                            <span style="font:600 11.5px 'Archivo';color:{{ p.netColor }}">{{ p.netLabel }}</span>
+                            <span style="font:400 19px 'Bulevar';color:#fff">{{ p.value }}</span>
+                            <span style="font:500 11.5px 'Acumin Pro Wide';color:{{ p.netColor }}">{{ p.netLabel }}</span>
                           </div>
                         </div>
                       </button>
@@ -423,12 +412,12 @@
                         </div>
                         <div style="flex:1;min-width:0">
                           <div style="display:flex;align-items:center;gap:7px">
-                            <span style="font:600 12.5px 'Archivo';color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                            <span style="font:500 12.5px 'Acumin Pro Wide';color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
                           </div>
-                          <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.city }} · {{ p.status }}</div>
+                          <div style="margin-top:3px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">{{ p.city }} · {{ p.status }}</div>
                           <div style="margin-top:9px;display:flex;align-items:baseline;gap:9px">
-                            <span style="font:400 18px 'Space Grotesk';color:#fff">{{ p.value }}</span>
-                            <span style="font:600 11px 'Archivo';color:{{ p.netColor }}">{{ p.netLabel }}</span>
+                            <span style="font:400 18px 'Bulevar';color:#fff">{{ p.value }}</span>
+                            <span style="font:500 11px 'Acumin Pro Wide';color:{{ p.netColor }}">{{ p.netLabel }}</span>
                           </div>
                         </div>
                         <span style="color:rgba(213,255,234,.3);font-size:15px">›</span>
@@ -437,43 +426,43 @@
                   </div>
                 </sc-if>
 
-                <div style="margin:26px 20px 0;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Figures updated 3 Sep, 09:41. Valuations from Hometrack, refreshed monthly. Tap any number to see how it is worked out.</div>
+                <div style="margin:26px 20px 0;font:400 10.5px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.32)">Figures updated 3 Sep, 09:41. Valuations from Hometrack, refreshed monthly. Tap any number to see how it is worked out.</div>
               </div>
             </sc-if>
 
             <sc-if value="{{ isProperty }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:0 0 112px;animation:iasFade .3s ease">
+              <div style="padding:0 0 126px;animation:iasFade .3s ease">
                 <div style="position:relative;height:246px;background:#03210B">
                   <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.55" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#onbStripe)"/></svg>
                   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,27,2,.75) 0%,rgba(0,27,2,0) 40%,rgba(0,27,2,.95) 100%)"></div>
                   <button onClick="{{ goHome }}" style="position:absolute;top:56px;left:16px;width:36px;height:36px;border-radius:99px;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border:1px solid rgba(213,255,234,.16);color:#D5FFEA;font-size:15px;cursor:pointer">←</button>
                   <div style="position:absolute;left:20px;top:60px;font:400 9px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.4);padding-left:44px">hero property shot</div>
                   <div style="position:absolute;left:20px;right:20px;bottom:16px">
-                    <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ prop.tagBg }};font:600 8.5px 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:{{ prop.tagColor }}">{{ prop.status }}</div>
-                    <div style="margin-top:9px;font:400 25px/1.2 'Space Grotesk';color:#fff;letter-spacing:-.015em">{{ prop.name }}</div>
-                    <div style="margin-top:5px;font:400 12px 'Archivo';color:rgba(213,255,234,.6)">{{ prop.address }}</div>
+                    <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ prop.tagBg }};font:500 8.5px 'Acumin Pro Wide';letter-spacing:.12em;text-transform:uppercase;color:{{ prop.tagColor }}">{{ prop.status }}</div>
+                    <div style="margin-top:9px;font:400 25px/1.2 'Bulevar';color:#fff">{{ prop.name }}</div>
+                    <div style="margin-top:5px;font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.6)">{{ prop.address }}</div>
                   </div>
                 </div>
 
                 <div style="padding:20px 20px 0">
                   <div style="border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
                     <div style="display:flex;align-items:center;justify-content:space-between">
-                      <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Net return</span>
+                      <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Net return</span>
                       <div style="display:flex;gap:4px">
                         <sc-for list="{{ netPeriods }}" as="np" hint-placeholder-count="2">
-                          <button onClick="{{ np.set }}" style="padding:4px 10px;border-radius:99px;border:0;background:{{ np.bg }};color:{{ np.color }};font:600 10px 'Archivo';cursor:pointer">{{ np.label }}</button>
+                          <button onClick="{{ np.set }}" style="padding:4px 10px;border-radius:99px;border:0;background:{{ np.bg }};color:{{ np.color }};font:500 10px 'Acumin Pro Wide';cursor:pointer">{{ np.label }}</button>
                         </sc-for>
                       </div>
                     </div>
                     <button onClick="{{ openNetFigure }}" style="margin-top:12px;background:transparent;border:0;padding:0;text-align:left;display:block;cursor:pointer">
-                      <div style="font:400 38px/1 'Space Grotesk';color:#45FFAC;letter-spacing:-.02em">{{ prop.netShown }}</div>
+                      <div style="font:400 38px/1 'Bulevar';color:#45FFAC">{{ prop.netShown }}</div>
                     </button>
-                    <div style="margin-top:8px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.5)">{{ prop.netSub }} · tap to see the maths</div>
+                    <div style="margin-top:8px;font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ prop.netSub }} · tap to see the maths</div>
                     <svg width="100%" height="76" viewBox="0 0 336 76" preserveAspectRatio="none" fill="none" style="margin-top:14px;display:block">
                       <path d="{{ prop.chartArea }}" fill="rgba(69,255,172,.12)"/>
                       <path d="{{ prop.chartLine }}" stroke="#45FFAC" stroke-width="1.8" stroke-linecap="round"/>
                     </svg>
-                    <div style="margin-top:7px;display:flex;justify-content:space-between;font:400 9px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
+                    <div style="margin-top:7px;display:flex;justify-content:space-between;font:400 9px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
                       <span>Oct 25</span><span>Rolling 12 months of net income</span><span>Sep 26</span>
                     </div>
                   </div>
@@ -481,8 +470,8 @@
                   <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
                     <sc-for list="{{ prop.facts }}" as="f" hint-placeholder-count="4">
                       <button onClick="{{ f.tap }}" style="text-align:left;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:13px;cursor:pointer">
-                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ f.label }}</div>
-                        <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#fff">{{ f.value }}</div>
+                        <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ f.label }}</div>
+                        <div style="margin-top:9px;font:400 20px 'Bulevar';color:#fff">{{ f.value }}</div>
                       </button>
                     </sc-for>
                   </div>
@@ -490,60 +479,60 @@
                   <sc-if value="{{ showMilestone }}" hint-placeholder-val="{{ true }}">
                     <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
                       <div style="display:flex;align-items:center;justify-content:space-between">
-                        <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ prop.progressLabel }}</span>
-                        <span style="font:600 11px 'Archivo';color:#45FFAC">{{ prop.progressPct }}</span>
+                        <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ prop.progressLabel }}</span>
+                        <span style="font:500 11px 'Acumin Pro Wide';color:#45FFAC">{{ prop.progressPct }}</span>
                       </div>
                       <div style="margin-top:12px;height:6px;border-radius:99px;background:rgba(213,255,234,.12);overflow:hidden">
                         <div style="height:100%;border-radius:99px;background:#45FFAC;width:{{ prop.progressWidth }}"></div>
                       </div>
-                      <div style="margin-top:10px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.5)">{{ prop.progressNote }}</div>
+                      <div style="margin-top:10px;font:400 11px/1.55 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ prop.progressNote }}</div>
                     </div>
                   </sc-if>
 
-                  <div style="margin-top:22px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Monthly expenses</div>
+                  <div style="margin-top:22px;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.55)">Monthly expenses</div>
                   <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);overflow:hidden">
                     <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(213,255,234,.09)">
-                      <span style="font:600 12px 'Archivo';color:#fff">Rent received</span>
-                      <span style="font:700 14px 'Archivo';color:#45FFAC">{{ prop.rent }}</span>
+                      <span style="font:500 12px 'Acumin Pro Wide';color:#fff">Rent received</span>
+                      <span style="font:700 14px 'Acumin Pro Wide';color:#45FFAC">{{ prop.rent }}</span>
                     </div>
                     <sc-for list="{{ prop.expenses }}" as="e" hint-placeholder-count="5">
                       <button onClick="{{ e.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:13px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
                         <div style="flex:1;min-width:0">
-                          <div style="font:500 12px 'Archivo';color:rgba(255,255,255,.92)">{{ e.k }}</div>
-                          <div style="margin-top:3px;font:400 10.5px/1.5 'Archivo';color:rgba(213,255,234,.42)">{{ e.note }}</div>
+                          <div style="font:500 12px 'Acumin Pro Wide';color:rgba(255,255,255,.92)">{{ e.k }}</div>
+                          <div style="margin-top:3px;font:400 10.5px/1.5 'Acumin Pro Wide';color:rgba(213,255,234,.42)">{{ e.note }}</div>
                         </div>
-                        <span style="font:700 13px 'Archivo';color:rgba(255,255,255,.55);white-space:nowrap">−{{ e.v }}</span>
+                        <span style="font:700 13px 'Acumin Pro Wide';color:rgba(255,255,255,.55);white-space:nowrap">−{{ e.v }}</span>
                       </button>
                     </sc-for>
                     <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:rgba(69,255,172,.06)">
-                      <span style="font:600 12px 'Archivo';color:#fff">Net each month</span>
-                      <span style="font:700 15px 'Archivo';color:#45FFAC">{{ prop.net }}</span>
+                      <span style="font:500 12px 'Acumin Pro Wide';color:#fff">Net each month</span>
+                      <span style="font:700 15px 'Acumin Pro Wide';color:#45FFAC">{{ prop.net }}</span>
                     </div>
                   </div>
 
                   <div style="margin-top:12px;display:flex;gap:10px">
-                    <button onClick="{{ goPayments }}" style="flex:1;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 12.5px 'Archivo';cursor:pointer">Payment schedule</button>
-                    <button onClick="{{ goForecast }}" style="flex:1;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 12.5px 'Archivo';cursor:pointer">Project returns</button>
+                    <button onClick="{{ goPayments }}" style="flex:1;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:500 12.5px 'Acumin Pro Wide';cursor:pointer">Payment schedule</button>
+                    <button onClick="{{ goForecast }}" style="flex:1;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 12.5px 'Acumin Pro Wide';cursor:pointer">Project returns</button>
                   </div>
                 </div>
               </div>
             </sc-if>
 
             <sc-if value="{{ isPayments }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:56px 0 112px;animation:iasFade .3s ease">
+              <div style="padding:56px 0 126px;animation:iasFade .3s ease">
                 <div style="padding:0 20px">
-                  <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Payments</div>
-                  <div style="margin-top:8px;font:400 12.5px/1.6 'Archivo';color:rgba(213,255,234,.55)">Everything due in the next 60 days, and what each item is for.</div>
+                  <div style="font:400 26px 'Bulevar';color:#fff">Payments</div>
+                  <div style="margin-top:8px;font:400 12.5px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.55)">Everything due in the next 60 days, and what each item is for.</div>
                   <div style="margin-top:20px;display:flex;gap:10px">
                     <div style="flex:1;border-radius:16px;background:#000;border:1px solid rgba(213,255,234,.1);padding:13px">
-                      <div style="font:600 8.5px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(213,255,234,.5)">Cost of ownership</div>
-                      <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#fff">{{ ownTotal }}</div>
-                      <div style="margin-top:3px;font:400 10px 'Archivo';color:rgba(213,255,234,.38)">Paid from rent</div>
+                      <div style="font:500 8.5px 'Acumin Pro Wide';letter-spacing:.14em;text-transform:uppercase;color:rgba(213,255,234,.5)">Cost of ownership</div>
+                      <div style="margin-top:9px;font:400 20px 'Bulevar';color:#fff">{{ ownTotal }}</div>
+                      <div style="margin-top:3px;font:400 10px 'Acumin Pro Wide';color:rgba(213,255,234,.38)">Paid from rent</div>
                     </div>
                     <div style="flex:1;border-radius:16px;background:rgba(69,255,172,.08);border:1px solid rgba(69,255,172,.28);padding:13px">
-                      <div style="font:600 8.5px 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(69,255,172,.8)">Owed to IAS</div>
-                      <div style="margin-top:9px;font:400 20px 'Space Grotesk';color:#45FFAC">{{ iasTotal }}</div>
-                      <div style="margin-top:3px;font:400 10px 'Archivo';color:rgba(213,255,234,.45)">You send this</div>
+                      <div style="font:500 8.5px 'Acumin Pro Wide';letter-spacing:.14em;text-transform:uppercase;color:rgba(69,255,172,.8)">Owed to IAS</div>
+                      <div style="margin-top:9px;font:400 20px 'Bulevar';color:#45FFAC">{{ iasTotal }}</div>
+                      <div style="margin-top:3px;font:400 10px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">You send this</div>
                     </div>
                   </div>
                 </div>
@@ -552,24 +541,24 @@
                   <div style="margin-top:26px;padding:0 20px">
                     <sc-for list="{{ groupedPayments }}" as="g" hint-placeholder-count="2">
                       <div style="margin-bottom:22px">
-                        <div style="font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42);margin-bottom:11px">{{ g.month }}</div>
+                        <div style="font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42);margin-bottom:11px">{{ g.month }}</div>
                         <div style="display:flex;flex-direction:column;gap:9px">
                           <sc-for list="{{ g.items }}" as="p" hint-placeholder-count="3">
                             <button onClick="{{ p.tap }}" style="width:100%;text-align:left;border-radius:16px;background:{{ p.bg }};border:1px solid {{ p.border }};padding:14px;cursor:pointer;display:flex;gap:13px;align-items:flex-start" style-active="transform:scale(.995)">
                               <div style="width:42px;flex:none;text-align:center">
-                                <div style="font:400 19px/1 'Space Grotesk';color:{{ p.dateColor }}">{{ p.day }}</div>
-                                <div style="margin-top:2px;font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.4)">{{ p.dow }}</div>
+                                <div style="font:400 19px/1 'Bulevar';color:{{ p.dateColor }}">{{ p.day }}</div>
+                                <div style="margin-top:2px;font:500 8.5px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.4)">{{ p.dow }}</div>
                               </div>
                               <div style="flex:1;min-width:0">
                                 <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-                                  <span style="font:600 12.5px 'Archivo';color:#fff">{{ p.title }}</span>
-                                  <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:600 8px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
+                                  <span style="font:500 12.5px 'Acumin Pro Wide';color:#fff">{{ p.title }}</span>
+                                  <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:500 8px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
                                 </div>
-                                <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ p.where }}</div>
-                                <div style="margin-top:7px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.58);text-wrap:pretty">{{ p.what }}</div>
+                                <div style="margin-top:4px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">{{ p.where }}</div>
+                                <div style="margin-top:7px;font:400 11px/1.55 'Acumin Pro Wide';color:rgba(213,255,234,.58);text-wrap:pretty">{{ p.what }}</div>
                               </div>
                               <div style="text-align:right;flex:none">
-                                <div style="font:700 14px 'Archivo';color:{{ p.amountColor }}">{{ p.amount }}</div>
+                                <div style="font:700 14px 'Acumin Pro Wide';color:{{ p.amountColor }}">{{ p.amount }}</div>
                               </div>
                             </button>
                           </sc-for>
@@ -585,19 +574,19 @@
                       <div style="margin-bottom:20px;border-radius:18px;background:{{ r.bg }};border:1px solid {{ r.border }};overflow:hidden">
                         <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(213,255,234,.09)">
                           <div>
-                            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:{{ r.labelColor }}">{{ r.title }}</div>
-                            <div style="margin-top:4px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ r.sub }}</div>
+                            <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:{{ r.labelColor }}">{{ r.title }}</div>
+                            <div style="margin-top:4px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">{{ r.sub }}</div>
                           </div>
-                          <div style="font:400 20px 'Space Grotesk';color:{{ r.totalColor }}">{{ r.total }}</div>
+                          <div style="font:400 20px 'Bulevar';color:{{ r.totalColor }}">{{ r.total }}</div>
                         </div>
                         <sc-for list="{{ r.items }}" as="p" hint-placeholder-count="3">
                           <button onClick="{{ p.tap }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:13px 16px;display:flex;gap:12px;align-items:center;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
-                            <div style="width:52px;flex:none;font:600 9.5px 'Archivo';letter-spacing:.06em;text-transform:uppercase;color:rgba(213,255,234,.45)">{{ p.shortDate }}</div>
+                            <div style="width:52px;flex:none;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.06em;text-transform:uppercase;color:rgba(213,255,234,.45)">{{ p.shortDate }}</div>
                             <div style="flex:1;min-width:0">
-                              <div style="font:600 12px 'Archivo';color:#fff">{{ p.title }}</div>
-                              <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.42)">{{ p.where }}</div>
+                              <div style="font:500 12px 'Acumin Pro Wide';color:#fff">{{ p.title }}</div>
+                              <div style="margin-top:3px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.42)">{{ p.where }}</div>
                             </div>
-                            <span style="font:700 13px 'Archivo';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
+                            <span style="font:700 13px 'Acumin Pro Wide';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
                           </button>
                         </sc-for>
                       </div>
@@ -614,21 +603,21 @@
                           <div style="position:absolute;left:-25px;top:5px;width:11px;height:11px;border-radius:99px;background:{{ p.dotBg }};border:2px solid #001B02;box-shadow:{{ p.dotRing }}"></div>
                           <sc-if value="{{ p.isToday }}" hint-placeholder-val="{{ false }}">
                             <div style="display:flex;align-items:center;gap:9px;margin:2px 0 16px">
-                              <span style="font:600 9px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:#45FFAC">Today · 3 Sep</span>
+                              <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:#45FFAC">Today · 3 Sep</span>
                               <span style="flex:1;height:1px;background:rgba(69,255,172,.28)"></span>
                             </div>
                           </sc-if>
                           <sc-if value="{{ p.isItem }}" hint-placeholder-val="{{ true }}">
                             <button onClick="{{ p.tap }}" style="width:100%;text-align:left;background:transparent;border:0;padding:0;cursor:pointer">
                               <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
-                                <span style="font:600 12.5px 'Archivo';color:#fff">{{ p.title }}</span>
-                                <span style="font:700 13.5px 'Archivo';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
+                                <span style="font:500 12.5px 'Acumin Pro Wide';color:#fff">{{ p.title }}</span>
+                                <span style="font:700 13.5px 'Acumin Pro Wide';color:{{ p.amountColor }};white-space:nowrap">{{ p.amount }}</span>
                               </div>
                               <div style="margin-top:4px;display:flex;align-items:center;gap:7px">
-                                <span style="font:400 10.5px 'Archivo';color:rgba(213,255,234,.5)">{{ p.shortDate }} · {{ p.where }}</span>
-                                <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:600 8px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
+                                <span style="font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ p.shortDate }} · {{ p.where }}</span>
+                                <span style="padding:2px 7px;border-radius:99px;background:{{ p.chipBg }};font:500 8px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:{{ p.chipColor }}">{{ p.kind }}</span>
                               </div>
-                              <div style="margin-top:7px;font:400 11px/1.55 'Archivo';color:rgba(213,255,234,.5);max-width:270px;text-wrap:pretty">{{ p.what }}</div>
+                              <div style="margin-top:7px;font:400 11px/1.55 'Acumin Pro Wide';color:rgba(213,255,234,.5);max-width:270px;text-wrap:pretty">{{ p.what }}</div>
                             </button>
                           </sc-if>
                         </div>
@@ -638,36 +627,36 @@
                 </sc-if>
 
                 <div style="margin:6px 20px 0">
-                  <button onClick="{{ openChangeSheet }}" style="width:100%;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer" style-active="background:rgba(69,255,172,.06)">Request a schedule change</button>
-                  <div style="margin-top:12px;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Mortgage and service charges are paid from your rent account automatically. Only items marked “Owed to IAS” need you to send funds.</div>
+                  <button onClick="{{ openChangeSheet }}" style="width:100%;height:52px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer" style-active="background:rgba(69,255,172,.06)">Request a schedule change</button>
+                  <div style="margin-top:12px;font:400 10.5px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.32)">Mortgage and service charges are paid from your rent account automatically. Only items marked “Owed to IAS” need you to send funds.</div>
                 </div>
               </div>
             </sc-if>
 
             <sc-if value="{{ isForecast }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:56px 0 112px;animation:iasFade .3s ease">
+              <div style="padding:56px 0 126px;animation:iasFade .3s ease">
                 <div style="padding:0 20px">
-                  <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Projected returns</div>
-                  <div style="margin-top:8px;font:400 12.5px/1.6 'Archivo';color:rgba(213,255,234,.55)">A projection, not a promise. Based on 3% rent growth and 4% capital growth a year.</div>
+                  <div style="font:400 26px 'Bulevar';color:#fff">Projected returns</div>
+                  <div style="margin-top:8px;font:400 12.5px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.55)">A projection, not a promise. Based on 3% rent growth and 4% capital growth a year.</div>
 
                   <div style="margin-top:20px;display:flex;gap:6px;padding:4px;border-radius:12px;background:#000;border:1px solid rgba(213,255,234,.1)">
                     <sc-for list="{{ yearTabs }}" as="y" hint-placeholder-count="3">
-                      <button onClick="{{ y.set }}" style="flex:1;height:36px;border-radius:9px;border:0;background:{{ y.bg }};color:{{ y.color }};font:600 12px 'Archivo';cursor:pointer">{{ y.label }}</button>
+                      <button onClick="{{ y.set }}" style="flex:1;height:36px;border-radius:9px;border:0;background:{{ y.bg }};color:{{ y.color }};font:500 12px 'Acumin Pro Wide';cursor:pointer">{{ y.label }}</button>
                     </sc-for>
                   </div>
 
                   <div style="margin-top:16px;border-radius:20px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px 16px 12px">
                     <div style="display:flex;align-items:flex-start;justify-content:space-between">
                       <div>
-                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ cursorYearLabel }}</div>
-                        <div style="margin-top:8px;font:400 32px/1 'Space Grotesk';color:#45FFAC;letter-spacing:-.02em">{{ cursorIncome }}</div>
-                        <div style="margin-top:5px;font:400 11.5px 'Archivo';color:rgba(213,255,234,.5)">rental income that year</div>
+                        <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ cursorYearLabel }}</div>
+                        <div style="margin-top:8px;font:400 32px/1 'Bulevar';color:#45FFAC">{{ cursorIncome }}</div>
+                        <div style="margin-top:5px;font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">rental income that year</div>
                       </div>
                       <div style="text-align:right">
-                        <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(174,255,214,.6)">Outgoings</div>
-                        <div style="margin-top:8px;font:400 20px/1 'Space Grotesk';color:#AEFFD6">{{ cursorOut }}</div>
-                        <div style="margin-top:9px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.45)">Net</div>
-                        <div style="margin-top:5px;font:700 14px 'Archivo';color:#fff">{{ cursorNet }}</div>
+                        <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(174,255,214,.6)">Outgoings</div>
+                        <div style="margin-top:8px;font:400 20px/1 'Bulevar';color:#AEFFD6">{{ cursorOut }}</div>
+                        <div style="margin-top:9px;font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.45)">Net</div>
+                        <div style="margin-top:5px;font:700 14px 'Acumin Pro Wide';color:#fff">{{ cursorNet }}</div>
                       </div>
                     </div>
 
@@ -690,7 +679,7 @@
                           </sc-for>
                         </sc-if>
                       </svg>
-                      <div style="margin-top:9px;display:flex;justify-content:space-between;font:400 9px 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
+                      <div style="margin-top:9px;display:flex;justify-content:space-between;font:400 9px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase;color:rgba(213,255,234,.32)">
                         <sc-for list="{{ xLabels }}" as="x" hint-placeholder-count="4">
                           <span>{{ x.label }}</span>
                         </sc-for>
@@ -698,17 +687,17 @@
                     </div>
 
                     <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(213,255,234,.08);display:flex;align-items:center;gap:16px">
-                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#45FFAC;border-radius:9px"></span><span style="font:500 10.5px 'Archivo';color:rgba(213,255,234,.6)">Income</span></div>
-                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#AEFFD6;border-radius:9px;opacity:.85"></span><span style="font:500 10.5px 'Archivo';color:rgba(213,255,234,.6)">Outgoings</span></div>
+                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#45FFAC;border-radius:9px"></span><span style="font:500 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.6)">Income</span></div>
+                      <div style="display:flex;align-items:center;gap:7px"><span style="width:14px;height:2px;background:#AEFFD6;border-radius:9px;opacity:.85"></span><span style="font:500 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.6)">Outgoings</span></div>
                       <span style="flex:1"></span>
-                      <span style="font:400 10px 'Archivo';color:rgba(213,255,234,.35)">{{ interactionHint }}</span>
+                      <span style="font:400 10px 'Acumin Pro Wide';color:rgba(213,255,234,.35)">{{ interactionHint }}</span>
                     </div>
                   </div>
 
                   <sc-if value="{{ inspectorOn }}" hint-placeholder-val="{{ false }}">
                     <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(69,255,172,.3);padding:16px">
                       <div style="display:flex;align-items:center;justify-content:space-between">
-                        <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:#45FFAC">Inspector · {{ cursorYearLabel }}</span>
+                        <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:#45FFAC">Inspector · {{ cursorYearLabel }}</span>
                         <div style="display:flex;gap:7px">
                           <button onClick="{{ cursorPrev }}" style="width:28px;height:28px;border-radius:8px;background:rgba(213,255,234,.08);border:0;color:#D5FFEA;cursor:pointer">‹</button>
                           <button onClick="{{ cursorNext }}" style="width:28px;height:28px;border-radius:8px;background:rgba(213,255,234,.08);border:0;color:#D5FFEA;cursor:pointer">›</button>
@@ -717,8 +706,8 @@
                       <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px">
                         <sc-for list="{{ inspectorRows }}" as="r" hint-placeholder-count="4">
                           <div style="display:flex;align-items:baseline;justify-content:space-between">
-                            <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.55)">{{ r.k }}</span>
-                            <span style="font:700 13px 'Archivo';color:{{ r.color }}">{{ r.v }}</span>
+                            <span style="font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.55)">{{ r.k }}</span>
+                            <span style="font:700 13px 'Acumin Pro Wide';color:{{ r.color }}">{{ r.v }}</span>
                           </div>
                         </sc-for>
                       </div>
@@ -726,71 +715,71 @@
                   </sc-if>
 
                   <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px">
-                    <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Projected equity</div>
+                    <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Projected equity</div>
                     <div style="margin-top:10px;display:flex;align-items:baseline;gap:10px">
-                      <span style="font:400 28px 'Space Grotesk';color:#fff;letter-spacing:-.02em">{{ cursorEquity }}</span>
-                      <span style="font:600 12px 'Archivo';color:#45FFAC">↑ {{ equityGrowth }}</span>
+                      <span style="font:400 28px 'Bulevar';color:#fff">{{ cursorEquity }}</span>
+                      <span style="font:500 12px 'Acumin Pro Wide';color:#45FFAC">↑ {{ equityGrowth }}</span>
                     </div>
                     <div style="margin-top:14px;display:flex;align-items:flex-end;gap:4px;height:56px">
                       <sc-for list="{{ equityBars }}" as="b" hint-placeholder-count="10">
                         <div style="flex:1;border-radius:3px 3px 0 0;background:{{ b.bg }};height:{{ b.h }}"></div>
                       </sc-for>
                     </div>
-                    <div style="margin-top:10px;font:400 10.5px/1.6 'Archivo';color:rgba(213,255,234,.32)">Value less mortgage debt, assuming interest-only borrowing is not repaid.</div>
+                    <div style="margin-top:10px;font:400 10.5px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.32)">Value less mortgage debt, assuming interest-only borrowing is not repaid.</div>
                   </div>
                 </div>
               </div>
             </sc-if>
 
             <sc-if value="{{ isNotifications }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:56px 20px 112px;animation:iasFade .3s ease">
-                <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Notifications</div>
+              <div style="padding:56px 20px 126px;animation:iasFade .3s ease">
+                <div style="font:400 26px 'Bulevar';color:#fff">Notifications</div>
                 <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
                   <sc-for list="{{ inAppNotifs }}" as="n" hint-placeholder-count="4">
                     <button onClick="{{ n.go }}" style="width:100%;text-align:left;border-radius:16px;background:{{ n.bg }};border:1px solid {{ n.border }};padding:14px;cursor:pointer;display:flex;gap:12px" style-active="transform:scale(.995)">
                       <div style="width:8px;height:8px;border-radius:99px;background:{{ n.dot }};margin-top:5px;flex:none"></div>
                       <div style="flex:1;min-width:0">
                         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
-                          <span style="font:600 12.5px 'Archivo';color:#fff">{{ n.title }}</span>
-                          <span style="font:400 10px 'Archivo';color:rgba(213,255,234,.35);white-space:nowrap">{{ n.when }}</span>
+                          <span style="font:500 12.5px 'Acumin Pro Wide';color:#fff">{{ n.title }}</span>
+                          <span style="font:400 10px 'Acumin Pro Wide';color:rgba(213,255,234,.35);white-space:nowrap">{{ n.when }}</span>
                         </div>
-                        <div style="margin-top:5px;font:400 11.5px/1.55 'Archivo';color:rgba(213,255,234,.58);text-wrap:pretty">{{ n.body }}</div>
+                        <div style="margin-top:5px;font:400 11.5px/1.55 'Acumin Pro Wide';color:rgba(213,255,234,.58);text-wrap:pretty">{{ n.body }}</div>
                       </div>
                     </button>
                   </sc-for>
                 </div>
-                <div style="margin-top:26px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Push previews</div>
-                <button onClick="{{ goLock }}" style="margin-top:12px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:600 12.5px 'Archivo';cursor:pointer">See the lock screen version</button>
-                <button onClick="{{ fireBanner }}" style="margin-top:10px;width:100%;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 12.5px 'Archivo';cursor:pointer">Trigger in-app banner</button>
+                <div style="margin-top:26px;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Push previews</div>
+                <button onClick="{{ goLock }}" style="margin-top:12px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.22);background:transparent;color:#D5FFEA;font:500 12.5px 'Acumin Pro Wide';cursor:pointer">See the lock screen version</button>
+                <button onClick="{{ fireBanner }}" style="margin-top:10px;width:100%;height:48px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 12.5px 'Acumin Pro Wide';cursor:pointer">Trigger in-app banner</button>
               </div>
             </sc-if>
 
             <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:56px 20px 112px;animation:iasFade .3s ease">
-                <div style="font:400 26px 'Space Grotesk';color:#fff;letter-spacing:-.015em">Profile</div>
+              <div style="padding:56px 20px 126px;animation:iasFade .3s ease">
+                <div style="font:400 26px 'Bulevar';color:#fff">Profile</div>
                 <div style="margin-top:20px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);padding:16px;display:flex;align-items:center;gap:14px">
-                  <div style="width:52px;height:52px;border-radius:99px;background:#03210B;border:1px solid rgba(213,255,234,.14);display:flex;align-items:center;justify-content:center;font:400 17px 'Space Grotesk';color:#D5FFEA;flex:none">MO</div>
+                  <div style="width:52px;height:52px;border-radius:99px;background:#03210B;border:1px solid rgba(213,255,234,.14);display:flex;align-items:center;justify-content:center;font:400 17px 'Bulevar';color:#D5FFEA;flex:none">MO</div>
                   <div>
-                    <div style="font:600 14px 'Archivo';color:#fff">{{ memberName }}</div>
-                    <div style="margin-top:3px;font:400 11px 'Archivo';color:rgba(213,255,234,.45)">Member since March 2024 · Ade Holdings Ltd</div>
+                    <div style="font:500 14px 'Acumin Pro Wide';color:#fff">{{ memberName }}</div>
+                    <div style="margin-top:3px;font:400 11px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">Member since March 2024 · Ade Holdings Ltd</div>
                   </div>
                 </div>
                 <div style="margin-top:12px;border-radius:18px;background:#000;border:1px solid rgba(213,255,234,.1);overflow:hidden">
                   <sc-for list="{{ profileRows }}" as="r" hint-placeholder-count="5">
                     <button onClick="{{ r.go }}" style="width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(213,255,234,.07);padding:15px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" style-active="background:rgba(69,255,172,.05)">
-                      <span style="font:500 12.5px 'Archivo';color:rgba(255,255,255,.92)">{{ r.label }}</span>
-                      <span style="display:flex;align-items:center;gap:9px"><span style="font:400 11px 'Archivo';color:rgba(213,255,234,.4)">{{ r.value }}</span><span style="color:rgba(213,255,234,.28);font-size:14px">›</span></span>
+                      <span style="font:500 12.5px 'Acumin Pro Wide';color:rgba(255,255,255,.92)">{{ r.label }}</span>
+                      <span style="display:flex;align-items:center;gap:9px"><span style="font:400 11px 'Acumin Pro Wide';color:rgba(213,255,234,.4)">{{ r.value }}</span><span style="color:rgba(213,255,234,.28);font-size:14px">›</span></span>
                     </button>
                   </sc-for>
                 </div>
 
-                <div style="margin-top:26px;font:600 9.5px 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Prototype states</div>
+                <div style="margin-top:26px;font:500 9.5px 'Acumin Pro Wide';letter-spacing:.2em;text-transform:uppercase;color:rgba(213,255,234,.42)">Prototype states</div>
                 <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
                   <sc-for list="{{ stateChips }}" as="c" hint-placeholder-count="9">
-                    <button onClick="{{ c.go }}" style="padding:9px 13px;border-radius:99px;border:1px solid rgba(213,255,234,.18);background:transparent;color:rgba(213,255,234,.75);font:500 11px 'Archivo';cursor:pointer" style-active="background:rgba(69,255,172,.1)">{{ c.label }}</button>
+                    <button onClick="{{ c.go }}" style="padding:9px 13px;border-radius:99px;border:1px solid rgba(213,255,234,.18);background:transparent;color:rgba(213,255,234,.75);font:500 11px 'Acumin Pro Wide';cursor:pointer" style-active="background:rgba(69,255,172,.1)">{{ c.label }}</button>
                   </sc-for>
                 </div>
-                <button onClick="{{ goSplash }}" style="margin-top:26px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.16);background:transparent;color:rgba(213,255,234,.6);font:600 12.5px 'Archivo';cursor:pointer">Sign out</button>
+                <button onClick="{{ goSplash }}" style="margin-top:26px;width:100%;height:48px;border-radius:14px;border:1px solid rgba(213,255,234,.16);background:transparent;color:rgba(213,255,234,.6);font:500 12.5px 'Acumin Pro Wide';cursor:pointer">Sign out</button>
               </div>
             </sc-if>
 
@@ -798,9 +787,9 @@
         </sc-if>
 
         <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
-          <div style="position:absolute;left:0;right:0;bottom:0;height:82px;background:rgba(0,0,0,.86);backdrop-filter:blur(28px);border-top:1px solid rgba(213,255,234,.1);display:flex;align-items:flex-start;padding:11px 8px 0;z-index:30">
+          <div style="position:absolute;left:13px;right:13px;bottom:24px;height:64px;border-radius:99px;background:rgba(9,48,26,.34);backdrop-filter:blur(34px) saturate(180%);-webkit-backdrop-filter:blur(34px) saturate(180%);border:1px solid rgba(213,255,234,.15);box-shadow:0 20px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);display:flex;align-items:center;padding:5px;z-index:30">
             <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
-              <button onClick="{{ t.go }}" style="flex:1;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color:{{ t.color }}">
+              <button onClick="{{ t.go }}" style="flex:1;height:54px;border-radius:99px;border:0;background:{{ t.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;color:{{ t.color }};transition:background .2s ease">
                 <sc-if value="{{ t.isPortfolio }}" hint-placeholder-val="{{ true }}">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor"><rect x="1" y="1" width="7.5" height="7.5" rx="2"/><rect x="10.5" y="1" width="7.5" height="7.5" rx="2"/><rect x="1" y="10.5" width="7.5" height="7.5" rx="2"/><rect x="10.5" y="10.5" width="7.5" height="7.5" rx="2"/></svg>
                 </sc-if>
@@ -813,7 +802,7 @@
                 <sc-if value="{{ t.isProfile }}" hint-placeholder-val="{{ false }}">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor"><circle cx="9.5" cy="5.5" r="4"/><path d="M1.5 18c0-4.2 3.6-6.5 8-6.5s8 2.3 8 6.5z"/></svg>
                 </sc-if>
-                <span style="font:600 8.5px 'Archivo';letter-spacing:.1em;text-transform:uppercase">{{ t.label }}</span>
+                <span style="font:500 8.5px 'Acumin Pro Wide';letter-spacing:.1em;text-transform:uppercase">{{ t.label }}</span>
               </button>
             </sc-for>
           </div>
@@ -825,109 +814,106 @@
     <sc-if value="{{ banner }}" hint-placeholder-val="{{ false }}">
       <div style="position:absolute;top:12px;left:10px;right:10px;z-index:80;border-radius:20px;background:rgba(0,0,0,.82);backdrop-filter:blur(28px);border:1px solid rgba(69,255,172,.3);padding:13px 14px;animation:iasFade .3s ease">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
-          <div style="width:19px;height:19px;border-radius:5px;border:1px solid rgba(213,255,234,.5);display:flex;align-items:center;justify-content:center;position:relative;flex:none">
-            <span style="font:600 6.5px 'Archivo';color:#D5FFEA">IAS</span>
-            <span style="position:absolute;right:-1.5px;top:-1.5px;width:4px;height:4px;border-radius:99px;background:#45FFAC"></span>
-          </div>
-          <span style="font:600 10.5px 'Archivo';letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85)">Income After Sport</span>
+          <img src="uploads/Freehold app icon.png" alt="Freehold" style="width:19px;height:19px;border-radius:4.5px;display:block;flex:none" />
+          <span style="font:500 10.5px 'Acumin Pro Wide';letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85)">Freehold</span>
           <span style="flex:1"></span>
-          <span style="font:400 10.5px 'Archivo';color:rgba(255,255,255,.45)">now</span>
+          <span style="font:400 10.5px 'Acumin Pro Wide';color:rgba(255,255,255,.45)">now</span>
         </div>
-        <div style="font:600 13.5px 'Archivo';color:#fff">{{ bannerTitle }}</div>
-        <div style="margin-top:3px;font:400 12px/1.45 'Archivo';color:rgba(213,255,234,.72)">{{ bannerBody }}</div>
+        <div style="font:500 13.5px 'Acumin Pro Wide';color:#fff">{{ bannerTitle }}</div>
+        <div style="margin-top:3px;font:400 12px/1.45 'Acumin Pro Wide';color:rgba(213,255,234,.72)">{{ bannerBody }}</div>
       </div>
     </sc-if>
 
     <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
       <div style="position:absolute;left:16px;right:16px;bottom:98px;z-index:70;border-radius:14px;background:rgba(69,255,172,.13);border:1px solid rgba(69,255,172,.4);backdrop-filter:blur(20px);padding:13px 15px;display:flex;align-items:center;gap:11px;animation:iasFade .3s ease">
         <div style="width:8px;height:8px;border-radius:99px;background:#45FFAC;flex:none;animation:iasPulse 2s ease-in-out infinite"></div>
-        <div style="font:600 12px/1.45 'Archivo';color:#45FFAC">{{ toast }}</div>
+        <div style="font:500 12px/1.45 'Acumin Pro Wide';color:#45FFAC">{{ toast }}</div>
       </div>
     </sc-if>
 
     <sc-if value="{{ sheetFigure }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
-        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
+      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,9,4,.5);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
+        <div style="background:rgba(7,36,19,.74);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-top:1px solid rgba(213,255,234,.18);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
           <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
-          <div style="font:600 9px 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ figure.label }}</div>
-          <div style="margin-top:10px;font:400 36px/1 'Space Grotesk';color:{{ figure.color }};letter-spacing:-.02em">{{ figure.value }}</div>
+          <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.18em;text-transform:uppercase;color:rgba(213,255,234,.5)">{{ figure.label }}</div>
+          <div style="margin-top:10px;font:400 36px/1 'Bulevar';color:{{ figure.color }}">{{ figure.value }}</div>
           <div style="margin-top:20px;border-top:1px solid rgba(213,255,234,.1)">
             <sc-for list="{{ figure.rows }}" as="r" hint-placeholder-count="4">
               <div style="padding:12px 0;border-bottom:1px solid rgba(213,255,234,.07);display:flex;align-items:baseline;justify-content:space-between;gap:14px">
-                <span style="font:400 12px/1.5 'Archivo';color:rgba(213,255,234,.6)">{{ r.k }}</span>
-                <span style="font:700 13px 'Archivo';color:{{ r.color }};white-space:nowrap">{{ r.v }}</span>
+                <span style="font:400 12px/1.5 'Acumin Pro Wide';color:rgba(213,255,234,.6)">{{ r.k }}</span>
+                <span style="font:700 13px 'Acumin Pro Wide';color:{{ r.color }};white-space:nowrap">{{ r.v }}</span>
               </div>
             </sc-for>
           </div>
-          <div style="margin-top:16px;font:400 11px/1.65 'Archivo';color:rgba(213,255,234,.42);text-wrap:pretty">{{ figure.note }}</div>
-          <button onClick="{{ closeSheet }}" style="margin-top:22px;width:100%;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Close</button>
+          <div style="margin-top:16px;font:400 11px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.42);text-wrap:pretty">{{ figure.note }}</div>
+          <button onClick="{{ closeSheet }}" style="margin-top:22px;width:100%;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer">Close</button>
         </div>
       </div>
     </sc-if>
 
     <sc-if value="{{ sheetPayment }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
-        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
+      <div style="position:absolute;inset:0;z-index:90;background:rgba(0,9,4,.5);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
+        <div style="background:rgba(7,36,19,.74);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-top:1px solid rgba(213,255,234,.18);border-radius:26px 26px 0 0;padding:12px 22px 42px;animation:iasSheet .3s cubic-bezier(.22,1,.36,1)">
           <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
-          <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ payment.chipBg }};font:600 8.5px 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:{{ payment.chipColor }}">{{ payment.kind }}</div>
-          <div style="margin-top:12px;font:400 22px/1.25 'Space Grotesk';color:#fff">{{ payment.title }}</div>
-          <div style="margin-top:6px;font:400 12px 'Archivo';color:rgba(213,255,234,.5)">{{ payment.where }} · {{ payment.fullDate }}</div>
-          <div style="margin-top:18px;font:400 34px/1 'Space Grotesk';color:{{ payment.amountColor }};letter-spacing:-.02em">{{ payment.amount }}</div>
+          <div style="display:inline-flex;padding:3px 9px;border-radius:99px;background:{{ payment.chipBg }};font:500 8.5px 'Acumin Pro Wide';letter-spacing:.12em;text-transform:uppercase;color:{{ payment.chipColor }}">{{ payment.kind }}</div>
+          <div style="margin-top:12px;font:400 22px/1.25 'Bulevar';color:#fff">{{ payment.title }}</div>
+          <div style="margin-top:6px;font:400 12px 'Acumin Pro Wide';color:rgba(213,255,234,.5)">{{ payment.where }} · {{ payment.fullDate }}</div>
+          <div style="margin-top:18px;font:400 34px/1 'Bulevar';color:{{ payment.amountColor }}">{{ payment.amount }}</div>
           <div style="margin-top:18px;padding:14px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.1)">
-            <div style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">What this is</div>
-            <div style="margin-top:8px;font:400 12.5px/1.65 'Archivo';color:rgba(213,255,234,.75);text-wrap:pretty">{{ payment.what }}</div>
+            <div style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">What this is</div>
+            <div style="margin-top:8px;font:400 12.5px/1.65 'Acumin Pro Wide';color:rgba(213,255,234,.75);text-wrap:pretty">{{ payment.what }}</div>
           </div>
           <div style="margin-top:14px;display:flex;flex-direction:column;gap:0">
             <sc-for list="{{ payment.rows }}" as="r" hint-placeholder-count="3">
               <div style="padding:11px 0;border-bottom:1px solid rgba(213,255,234,.07);display:flex;align-items:baseline;justify-content:space-between;gap:14px">
-                <span style="font:400 11.5px 'Archivo';color:rgba(213,255,234,.55)">{{ r.k }}</span>
-                <span style="font:600 12px 'Archivo';color:rgba(255,255,255,.9);text-align:right">{{ r.v }}</span>
+                <span style="font:400 11.5px 'Acumin Pro Wide';color:rgba(213,255,234,.55)">{{ r.k }}</span>
+                <span style="font:500 12px 'Acumin Pro Wide';color:rgba(255,255,255,.9);text-align:right">{{ r.v }}</span>
               </div>
             </sc-for>
           </div>
           <div style="margin-top:20px;display:flex;gap:10px">
-            <button onClick="{{ closeSheet }}" style="flex:1;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Close</button>
-            <button onClick="{{ openChangeSheet }}" style="flex:1.3;height:50px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:600 13px 'Archivo';cursor:pointer">Request a change</button>
+            <button onClick="{{ closeSheet }}" style="flex:1;height:50px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer">Close</button>
+            <button onClick="{{ openChangeSheet }}" style="flex:1.3;height:50px;border-radius:14px;border:0;background:#45FFAC;color:#001B02;font:500 13px 'Acumin Pro Wide';cursor:pointer">Request a change</button>
           </div>
         </div>
       </div>
     </sc-if>
 
     <sc-if value="{{ sheetChange }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;inset:0;z-index:95;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);display:flex;flex-direction:column;justify-content:flex-end">
-        <div style="background:#000;border-top:1px solid rgba(213,255,234,.16);border-radius:26px 26px 0 0;padding:12px 22px 38px;animation:iasSheet .32s cubic-bezier(.22,1,.36,1);max-height:88%;overflow-y:auto">
+      <div style="position:absolute;inset:0;z-index:95;background:rgba(0,9,4,.52);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);display:flex;flex-direction:column;justify-content:flex-end">
+        <div style="background:rgba(7,36,19,.74);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-top:1px solid rgba(213,255,234,.18);border-radius:26px 26px 0 0;padding:12px 22px 38px;animation:iasSheet .32s cubic-bezier(.22,1,.36,1);max-height:88%;overflow-y:auto">
           <div style="width:38px;height:4px;border-radius:99px;background:rgba(213,255,234,.22);margin:0 auto 20px"></div>
-          <div style="font:400 22px/1.25 'Space Grotesk';color:#fff">Request a schedule change</div>
-          <div style="margin-top:8px;font:400 12px/1.6 'Archivo';color:rgba(213,255,234,.55)">Tell us the date that suits you better. Your portfolio manager will confirm within one working day, and nothing changes until they do.</div>
+          <div style="font:400 22px/1.25 'Bulevar';color:#fff">Request a schedule change</div>
+          <div style="margin-top:8px;font:400 12px/1.6 'Acumin Pro Wide';color:rgba(213,255,234,.55)">Tell us the date that suits you better. Your portfolio manager will confirm within one working day, and nothing changes until they do.</div>
 
-          <div style="margin-top:22px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Payment</div>
+          <div style="margin-top:22px;font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Payment</div>
           <div style="margin-top:9px;padding:13px 14px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.1);display:flex;align-items:center;justify-content:space-between">
             <div>
-              <div style="font:600 12px 'Archivo';color:#fff">{{ changeTargetTitle }}</div>
-              <div style="margin-top:3px;font:400 10.5px 'Archivo';color:rgba(213,255,234,.45)">{{ changeTargetSub }}</div>
+              <div style="font:500 12px 'Acumin Pro Wide';color:#fff">{{ changeTargetTitle }}</div>
+              <div style="margin-top:3px;font:400 10.5px 'Acumin Pro Wide';color:rgba(213,255,234,.45)">{{ changeTargetSub }}</div>
             </div>
-            <span style="font:700 13px 'Archivo';color:#fff">{{ changeTargetAmount }}</span>
+            <span style="font:700 13px 'Acumin Pro Wide';color:#fff">{{ changeTargetAmount }}</span>
           </div>
 
           <div style="margin-top:20px;display:flex;align-items:baseline;justify-content:space-between">
-            <span style="font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">New preferred date</span>
-            <span style="font:400 11px 'Archivo';color:rgba(213,255,234,.4)">October 2026</span>
+            <span style="font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">New preferred date</span>
+            <span style="font:400 11px 'Acumin Pro Wide';color:rgba(213,255,234,.4)">October 2026</span>
           </div>
           <div style="margin-top:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:5px">
             <sc-for list="{{ dowLabels }}" as="d" hint-placeholder-count="7">
-              <div style="text-align:center;font:600 8px 'Archivo';letter-spacing:.08em;text-transform:uppercase;color:rgba(213,255,234,.32);padding-bottom:3px">{{ d.label }}</div>
+              <div style="text-align:center;font:500 8px 'Acumin Pro Wide';letter-spacing:.08em;text-transform:uppercase;color:rgba(213,255,234,.32);padding-bottom:3px">{{ d.label }}</div>
             </sc-for>
             <sc-for list="{{ calendarDays }}" as="c" hint-placeholder-count="35">
-              <button onClick="{{ c.pick }}" style="height:36px;border-radius:10px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:400 13px 'Space Grotesk';cursor:{{ c.cursor }}">{{ c.label }}</button>
+              <button onClick="{{ c.pick }}" style="height:36px;border-radius:10px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:400 13px 'Bulevar';cursor:{{ c.cursor }}">{{ c.label }}</button>
             </sc-for>
           </div>
 
-          <div style="margin-top:20px;font:600 9px 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Anything we should know?</div>
+          <div style="margin-top:20px;font:500 9px 'Acumin Pro Wide';letter-spacing:.16em;text-transform:uppercase;color:rgba(213,255,234,.5)">Anything we should know?</div>
           <textarea value="{{ changeNote }}" onChange="{{ setChangeNote }}" placeholder="Optional — e.g. my club pays me on the 25th, so later in the month works better." style="margin-top:9px;width:100%;height:88px;border-radius:14px;background:rgba(213,255,234,.05);border:1px solid rgba(213,255,234,.12);color:#fff;padding:13px 14px;font-size:13px;line-height:1.55;resize:none;outline:none" style-focus="border-color:rgba(69,255,172,.55)"></textarea>
 
           <div style="margin-top:20px;display:flex;gap:10px">
-            <button onClick="{{ closeSheet }}" style="flex:1;height:52px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:600 13px 'Archivo';cursor:pointer">Cancel</button>
-            <button onClick="{{ submitChange }}" style="flex:1.4;height:52px;border-radius:14px;border:0;background:{{ submitBg }};color:{{ submitColor }};font:600 13px 'Archivo';cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+            <button onClick="{{ closeSheet }}" style="flex:1;height:52px;border-radius:14px;border:0;background:rgba(213,255,234,.1);color:#D5FFEA;font:500 13px 'Acumin Pro Wide';cursor:pointer">Cancel</button>
+            <button onClick="{{ submitChange }}" style="flex:1.4;height:52px;border-radius:14px;border:0;background:{{ submitBg }};color:{{ submitColor }};font:500 13px 'Acumin Pro Wide';cursor:{{ submitCursor }}">{{ submitLabel }}</button>
           </div>
         </div>
       </div>
@@ -1487,7 +1473,8 @@ class Component extends DCLogic {
 
       tabs: tabDefs.map(([label, key]) => ({
         label, go: () => this.go(key),
-        color: activeTab === key ? MINT : 'rgba(213,255,234,.45)',
+        color: activeTab === key ? MINT : 'rgba(213,255,234,.5)',
+        bg: activeTab === key ? 'rgba(213,255,234,.13)' : 'transparent',
         isPortfolio: key === 'home', isPayments: key === 'payments',
         isForecast: key === 'forecast', isProfile: key === 'profile',
       })),
